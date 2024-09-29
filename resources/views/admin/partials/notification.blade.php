@@ -1,0 +1,19 @@
+<div>
+    @if (count($errors))
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <ul>
+                @foreach ($errors as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+
+        </div>
+    @endif
+    @if (Session::has('message') or isset($message))
+        <div class="alert alert-{{ Session::get('message_type', ($message_type ?? 'danger')) }} alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Message &nbsp;</strong> {{ Session::get('message') ?? $message }}
+        </div>
+    @endif
+</div>
