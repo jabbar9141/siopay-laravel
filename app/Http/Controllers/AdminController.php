@@ -48,7 +48,7 @@ class AdminController extends Controller
      * datatable for all orders
      */
     public function allUsersList()
-    {   
+    {
         $query = User::query();
         if (Auth::user()->user_type == 'kyc_manager') {
             $query->where('kyc_manager_id', auth()->user()->id);
@@ -122,7 +122,7 @@ class AdminController extends Controller
     }
 
     public function allAgentList()
-    {   
+    {
         $query = User::query();
         if (Auth::user()->user_type == 'kyc_manager') {
             $query->where('kyc_manager_id', auth()->user()->id);
@@ -130,7 +130,7 @@ class AdminController extends Controller
         if (Auth::user()->user_type == 'account_manager') {
             $query->where('account_manager_id', auth()->user()->id);
         }
-       $users = $query->where('user_type', 'agent')->orderBy('created_at', 'DESC')->get();
+        $users = $query->where('user_type', 'agent')->orderBy('created_at', 'DESC')->get();
         return Datatables::of($users)
             ->addIndexColumn()
             ->editColumn('status', function ($user) {
@@ -188,7 +188,7 @@ class AdminController extends Controller
     }
 
     public function allMobileUserList()
-    {   
+    {
         $query = User::query();
         if (Auth::user()->user_type == 'kyc_manager') {
             $query->where('kyc_manager_id', auth()->user()->id);
@@ -596,6 +596,10 @@ class AdminController extends Controller
 
     public function assignKycManager(Request $request, $user_id)
     {
+        $request->validate([
+            'kyc_manager_id' => 'required'
+        ]);
+
         try {
             User::where('id', $user_id)->update([
                 'kyc_manager_id' => $request->kyc_manager_id
@@ -609,6 +613,10 @@ class AdminController extends Controller
 
     public function assignAccountManager(Request $request, $user_id)
     {
+        $request->validate([
+            'account_manager_id' => 'required'
+        ]);
+
         try {
             User::where('id', $user_id)->update([
                 'account_manager_id' => $request->account_manager_id
@@ -622,6 +630,9 @@ class AdminController extends Controller
 
     public function uploadProfileImage(Request $request, $user_id)
     {
+        $request->validate([
+            'photo' => 'required'
+        ]);
         try {
             if ($request->hasFile('photo')) {
                 $photo = $request->file('photo');
@@ -648,6 +659,23 @@ class AdminController extends Controller
 
     public function storeUser(Request $request)
     {
+
+        $request->validate([
+            'surname' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'user_type' => 'required',
+            'country_id' => 'required|numeric',
+            'city_id' => 'required|numeric',
+            'phone' => 'required',
+            'photo' => 'required',
+            'gender' => 'required',
+            'date_of_birth' => 'required',
+            'tax_code' => 'required',
+            'address' => 'required',
+        ]);
+
         // return $request;
         try {
             if ($request->hasFile('photo')) {
@@ -699,6 +727,19 @@ class AdminController extends Controller
 
     public function updateUser(Request $request, $id)
     {
+        $request->validate([
+            'surname' => 'required',
+            'name' => 'required',
+            'password' => 'required',
+            'user_type' => 'required',
+            'country_id' => 'required',
+            'city_id' => 'required',
+            'phone' => 'required',
+            'gender' => 'required',
+            'date_of_birth' => 'required',
+            'tax_code' => 'required',
+            'address' => 'required',
+        ]);
 
         $user  = User::find($id);
         try {

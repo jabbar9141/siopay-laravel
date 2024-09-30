@@ -27,7 +27,7 @@
         }
     </style>
     <div class="container-fluid">
-        @include('admin.partials.notification')
+        {{-- @include('admin.partials.notification') --}}
         <div class="card">
             <div class="card-header">
                 <h4 class="font-bold">Create New User</h4>
@@ -42,34 +42,52 @@
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Surname </h1>
                                     <input placeholder="Surname" type="text" name="surname"
-                                        class="form-control rounded-lg" required />
+                                        class="form-control rounded-lg" />
+                                    @error('surname')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Name</h1>
                                     <input placeholder="Last Name" type="text" name="name"
-                                        class="form-control rounded-lg" required/>
+                                        class="form-control rounded-lg" />
+                                    @error('name')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Profile Image</h1>
-                                    <input placeholder="" type="file" name="photo" class="form-control rounded-lg" required/>
+                                    <input placeholder="" type="file" name="photo" class="form-control rounded-lg" />
+                                    @error('photo')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Email Address</h1>
                                     <input placeholder="victor1993@gmail.com" type="email" name="email"
-                                        class="form-control rounded-lg" required/>
+                                        class="form-control rounded-lg" />
+                                    @error('email')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Mobile Number</h1>
                                     <input placeholder="08123456789" type="text" name="phone"
-                                        class="form-control rounded-lg" required/>
+                                        class="form-control rounded-lg" />
+                                    @error('phone')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Tax Code</h1>
                                     <input placeholder="Tax Code" type="text" name="tax_code"
-                                        class="form-control rounded-lg" required/>
+                                        class="form-control rounded-lg" />
+                                    @error('tax_code')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2 space-y-2">
@@ -79,11 +97,17 @@
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select>
+                                    @error('gender')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Password</h1>
-                                    <input type="password" name="password" class="form-control rounded-lg" required/>
+                                    <input type="password" name="password" class="form-control rounded-lg" />
+                                    @error('password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2 space-y-2">
@@ -93,30 +117,45 @@
                                         <option value="kyc_manager">KYC Manager</option>
                                         <option value="account_manager">Account Manager</option>
                                     </select>
+                                    @error('user_type')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Date Of Birth</h1>
-                                    <input type="date" name="date_of_birth" class="form-control rounded-lg" required/>
+                                    <input type="date" name="date_of_birth" class="form-control rounded-lg" />
+                                    @error('date_of_birth')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
 
 
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold">Select Country</h1>
                                     <select name="country_id" id="residential_country" class="form-control rounded-lg" required>
+                                        @error('country_id')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </select>
                                 </div>
 
                                 <div class="p-2 space-y-2">
                                     <h1 class="font-bold mt-2">Select City</h1>
                                     <select name="city_id" id="residential_city" class="form-control rounded-lg" required>
+                                        @error('city_id')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                     </select>
                                 </div>
 
                             </div>
                             <div class="p-2 space-y-2">
                                 <h1 class="font-bold">Address</h1>
-                                <input type="text" name="address" class="form-control rounded-lg" required/>
+                                <input type="text" name="address" class="form-control rounded-lg" />
+                                @error('address')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="flex justify-end">
                                 <div class="p-2 flex justify-end items-center">
@@ -145,7 +184,7 @@
             residential_country.wrap('<div class="position-relative"></div>');
             residential_country.on('change', function() {
                 $("#residential_city").empty()
-                $('#residential_city').html('<option value="">Select City</option>');
+                $('#residential_city').html('<option value="" disabled >Select City</option>');
                 var _token = '{{ csrf_token() }}';
                 let url =
                     "{{ route('ajax-get-country-cities', ['countryId' => ':countryId']) }}"
@@ -195,7 +234,7 @@
 
         function countries() {
 
-            $('#residential_country').html('<option value="">Select Country</option>');
+            $('#residential_country').html('<option value="" disabled >Select Country</option>');
             var _token = '{{ csrf_token() }}';
             let url = "{{ route('ajax-get-countries') }}";
             $.ajax({

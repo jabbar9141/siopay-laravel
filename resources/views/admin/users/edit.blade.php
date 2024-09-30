@@ -30,7 +30,13 @@
         }
     </style>
     <div class="container-fluid">
-        @include('admin.partials.notification')
+        @if ($errors->any())
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="text-danger">{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
         <div class="row mb-4">
             <div class="col-md-6 ">
                 <div class="card mb-3 h-100">
@@ -63,7 +69,10 @@
                                         @csrf
                                         @method('POST')
                                         <label for="photo" class="col-form-label">Select Photo</label>
-                                        <input type="file" name="photo" class="form-control" id="photo" required>
+                                        <input type="file" name="photo" class="form-control" id="photo">
+                                        @error('photo')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
                                         <div class="text-end mt-3">
                                             <button type="submit" class="btn btn-sm btn-primary">Save</button>
                                         </div>
@@ -97,7 +106,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="password">{{ __('Password') }} <i class="text-danger">*</i></label>
-                                <input id="password" type="password"
+                                <input id="password" type="password" required
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     autocomplete="new-password">
                                 @error('password')
@@ -142,7 +151,7 @@
                                     <div class="form-group col-md-12">
                                         <label for="kyc_manager_id" class="col-form-label">Select Kyc Manager<i
                                                 class="text-danger">*</i></label>
-                                        <select class="form-control" id="kyc_manager_id" name="kyc_manager_id">
+                                        <select class="form-control" id="kyc_manager_id" name="kyc_manager_id" required>
                                             <option value="" class="font-bold" selected>Select KYC Manager</option>
                                             @foreach ($kycManagers as $kycManager)
                                                 <option class="font-bold" value="{{ $kycManager->id }}"
@@ -151,7 +160,7 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('currency_id')
+                                        @error('kyc_manager_id')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -178,7 +187,8 @@
                                     <div class="form-group col-md-12">
                                         <label for="account_manager_id" class="col-form-label">Select Account Manager<i
                                                 class="text-danger">*</i></label>
-                                        <select class="form-control" id="account_manager_id" name="account_manager_id">
+                                        <select class="form-control" id="account_manager_id" name="account_manager_id"
+                                            required>
                                             <option value="" class="font-bold" selected>Select Account Manager
                                             </option>
                                             @foreach ($accountManagers as $accountManager)
@@ -188,7 +198,7 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('currency_id')
+                                        @error('account_manager_id')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>

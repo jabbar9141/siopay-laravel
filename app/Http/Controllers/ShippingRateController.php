@@ -180,6 +180,7 @@ class ShippingRateController extends Controller
     public function edit(ShippingRate $shippingRate)
     {
         $locations = Location::all();
+        
         return view('admin.settings.shipping_rates.edit', ['shippingRate' => $shippingRate, 'locations' => $locations]);
     }
 

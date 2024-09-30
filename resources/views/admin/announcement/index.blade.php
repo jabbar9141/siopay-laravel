@@ -8,24 +8,40 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                @include('admin.partials.notification')
+                {{-- @include('admin.partials.notification') --}}
+                @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-danger">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
                 <form action="{{ route('announcement.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="country">Title</label>
-                            <input type="text" name="title" class="form-control" required>
+                            <input type="text" name="title" class="form-control">
+                            @error('title')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="country">Select File</label>
-                            <input type="file" name="image" class="form-control" accept="" required>
+                            <input type="file" name="image" class="form-control" accept="">
+                            @error('image')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="monthly_limit">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required name="description"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                            @error('description')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <br>

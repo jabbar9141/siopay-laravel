@@ -190,7 +190,7 @@ class IntlFundsTransferRatesController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage(), ['exception' => $e]);
-            return back()->with('message', "An error occured " . $e->getMessage());
+            return back()->with('message', "An error occured" . $e->getMessage());
         }
     }
 
@@ -210,7 +210,7 @@ class IntlFundsTransferRatesController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage(), ['exception' => $e]);
-            return back()->with('message', "An error occured " . $e->getMessage());
+            return back()->with('message', "An error occured" . $e->getMessage());
         }
     }
 }

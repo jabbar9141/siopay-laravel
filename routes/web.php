@@ -121,7 +121,7 @@ Route::get('migration', function () {
     // Artisan::call('migrate', [
     //     '--path' => 'database/migrations/2024_09_22_041847_create_countries_table.php'
     // ]);
-    
+
     // Artisan::call('migrate', [
     //     '--path' => 'database/migrations/2024_09_22_041832_create_states_table.php'
     // ]);
@@ -135,13 +135,16 @@ Route::get('migration', function () {
     // Artisan::call('db:seed', [
     //     '--class' => 'CountryTableSeeder'
     // ]);
-    
+
     // User Management
     // Artisan::call('migrate', [
     //     '--path' => 'database/migrations/2024_09_22_070055_update_enum_values_to_users_table.php'
     // ]);
-     Artisan::call('migrate', [
-        '--path' => 'database/migrations/2024_09_26_183051_add_user_unique_id_to_users_table.php'
+    //  Artisan::call('migrate', [
+    //     '--path' => 'database/migrations/2024_09_26_183051_add_user_unique_id_to_users_table.php'
+    // ]);
+    Artisan::call('migrate', [
+        '--path' => 'database/migrations/2024_09_30_142436_create_services_table.php'
     ]);
     return 'Successfully created';
 });
@@ -164,7 +167,7 @@ Route::post('ajax-get-country-state/{countryId}', [CityController::class, 'getCo
 Route::post('ajax-get-states/{countryId}', [StateController::class, 'getStates'])->name('ajax-get-states');
 Route::get('ajax-get-countries/', [CountryController::class, 'getCountries'])->name('ajax-get-countries');
 
-// Agent Routes 
+// Agent Routes
 Route::resource('agents', AgentController::class)->middleware(['auth']);
 // Route::get('agent/accept', [AgentController::class, 'accept'])->name('agent.accept')->middleware(['auth']);
 // Route::get('agent/accept-search', [AgentController::class, 'accept_search'])->name('agent.accept.search')->middleware(['auth']);
@@ -174,7 +177,7 @@ Route::get('editAgentSitting/{id}', [AgentController::class, 'editAgentSitting']
 // Admin and auth routes
 Route::get('admin/settings', [AdminController::class, 'admin_settings'])->name('admin.settings')->middleware(['auth']);
 Route::post('updatePassword/{id?}', [AuthController::class, 'updatePassword'])->name('updatePassword')->middleware(['auth']);
-// All Users Routes 
+// All Users Routes
 Route::get('createUser', [AdminController::class, 'createUser'])->name('createUser')->middleware(['auth']);
 Route::post('storeUser', [AdminController::class, 'storeUser'])->name('storeUser')->middleware(['auth']);
 Route::get('editUser/{id}', [AdminController::class, 'editUser'])->name('editUser')->middleware(['auth']);

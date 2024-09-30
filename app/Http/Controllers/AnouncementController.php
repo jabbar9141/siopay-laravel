@@ -21,11 +21,16 @@ class AnouncementController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+        'title' => 'required',
+        'description' => 'required',
+        'image' => 'required',
+        ]);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = 'announcement_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/announcement/'), $fileName);
-        
+
         }
         $anouncement = new Anouncement();
         $anouncement->title = $request->title;
@@ -50,7 +55,7 @@ class AnouncementController extends Controller
     }
 
     public function remove($id)
-    {  
+    {
         $anouncement =  Anouncement::find($id);
         $anouncement->delete();
         return redirect()->back()->with(['message' => 'Announcement Removed Successfully', 'message_type' => 'success']);
