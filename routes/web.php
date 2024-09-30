@@ -141,11 +141,12 @@ Route::get('migration', function () {
     //     '--path' => 'database/migrations/2024_09_22_070055_update_enum_values_to_users_table.php'
     // ]);
     //  Artisan::call('migrate', [
-    //     '--path' => 'database/migrations/2024_09_26_183051_add_user_unique_id_to_users_table.php'
+    //     '--path' => 'database/migrations/2024_09_26_183052_add_user_unique_id_to_users_table.php'
     // ]);
-    Artisan::call('migrate', [
-        '--path' => 'database/migrations/2024_09_30_142436_create_services_table.php'
-    ]);
+    // Artisan::call('migrate', [
+    //     '--path' => 'database/migrations/2024_09_30_142436_create_services_table.php'
+    // ]);
+
     return 'Successfully created';
 });
 

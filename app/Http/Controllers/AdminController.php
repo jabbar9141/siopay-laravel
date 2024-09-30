@@ -755,6 +755,26 @@ class AdminController extends Controller
                 'tax_code' => $request->tax_code,
                 'address' => $request->address,
             ]);
+
+            $destinationDirectory = public_path('uploads/documents');
+            if (!file_exists($destinationDirectory)) {
+                mkdir($destinationDirectory, 0755, true);
+            }
+            if ($request->hasFile('registration_doc')) {
+                $attachment = $request->file('registration_doc');
+                $filename = "registration_doc_" . rand(100000, 999999) . '.' . $attachment->extension();
+                $attachment->move($destinationDirectory, $filename);
+                $user->registration_doc = 'uploads/documents/' . $filename;
+                $user->save();
+            }
+
+            if ($request->hasFile('full_doc')) {
+                $full_doc = $request->file('full_doc');
+                $filenameFull = "full_doc_" . rand(100000, 999999) . '.' . $full_doc->extension();
+                $full_doc->move($destinationDirectory, $filenameFull);
+                $user->full_doc = 'uploads/documents/' . $filenameFull;
+                $user->save();
+            }
             return back()->with(['message' => 'User Information Update Successfully!', 'message_type' => 'success']);
         } catch (\Exception $e) {
             Log::error($e->getMessage(), ['exception' => $e]);

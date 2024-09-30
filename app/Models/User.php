@@ -28,16 +28,18 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'user_type',
         'blocked',
-        'user_unique_id', 
-        'currecy_id', 
-        'kyc_manager_id', 
+        'user_unique_id',
+        'currecy_id',
+        'kyc_manager_id',
         'account_manager_id',
         'gender',
         'date_of_birth',
         'tax_code',
         'city_id',
         'surname',
-        'address'
+        'address',
+        'registration_doc',
+        'full_doc'
     ];
 
     /**
@@ -100,6 +102,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTIdentifier()
     {
         return $this->getKey();
+    }
+
+    public function country(){
+        return $this->belongsTo('countries', 'country');
     }
 
     public function getJWTCustomClaims()

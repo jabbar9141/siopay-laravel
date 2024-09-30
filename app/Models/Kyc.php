@@ -39,4 +39,5 @@ class Kyc extends Model
     {
         return $this->belongsTo(KycAddressProofType::class);
     }
+
 }

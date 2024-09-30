@@ -24,9 +24,9 @@
                                         @csrf
                                         @method('POST')
                                         <label for="photo" class="col-form-label">Select Photo</label>
-                                        <input type="file" name="photo" class="form-control" id="photo" required>
+                                        <input type="file" disabled name="photo" class="form-control" id="photo" required>
                                         <div class="text-end mt-3">
-                                            <button type="submit" class="btn btn-sm btn-primary"
+                                            <button type="submit" class="btn btn-sm disabled btn-primary"
                                                 @if (auth()->user()->user_type == 'account_manager') disabled @endif>Save</button>
                                         </div>
                                     </form>

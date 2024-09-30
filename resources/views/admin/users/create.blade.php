@@ -27,7 +27,7 @@
         }
     </style>
     <div class="container-fluid">
-        {{-- @include('admin.partials.notification') --}}
+        @include('admin.partials.notification')
         <div class="card">
             <div class="card-header">
                 <h4 class="font-bold">Create New User</h4>

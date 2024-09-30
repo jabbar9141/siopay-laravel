@@ -63,12 +63,12 @@
                                         @csrf
                                         @method('POST')
                                         <label for="photo" class="col-form-label">Select Photo</label>
-                                        <input type="file" name="photo" class="form-control" id="photo">
+                                        <input type="file" disabled name="photo" class="form-control" id="photo">
                                         @error('photo')
                                             <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                         <div class="text-end mt-3">
-                                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                                            <button type="submit" class="btn disabled btn-sm btn-primary">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -82,11 +82,66 @@
                                     <p><b>Email: {{ $user->email }}</b></p>
                                     <p><b>Status: {{ $user->status == 1 ? 'Approved' : 'Blocked' }}</b></p>
                                     <p><b>User Type : {{ Str::headline($user->user_type) }}</b></p>
+
                                 </div>
+                                @if ($user->user_type == 'mobile')
+                                    <div class="mt-3">
+                                        <a type="button" class="mt-3 text-primary" data-bs-toggle="modal"
+                                            data-bs-target="#registrationDocumentModal">
+                                            Check Registration Document
+                                        </a>
+                                        <br>
+                                        <a type="button" class="mt-2 text-primary" data-bs-toggle="modal"
+                                            data-bs-target="#fullDocumentModal">
+                                            Check Full Document
+                                        </a>
+                                    </div>
+                                @endif
+
                             </div>
 
                         </div>
 
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="registrationDocumentModal" tabindex="-1"
+                aria-labelledby="registrationDocumentModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="registrationDocumentModalLabel">Mobile User Registration
+                                Document
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <iframe class="pdf" src="{{ asset($user->registration_doc) }}" width="100%"
+                                height="650"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="fullDocumentModal" tabindex="-1" aria-labelledby="fullDocumentModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="fullDocumentModalLabel">Mobile User Full Document</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <iframe class="pdf" src="{{ asset($user->full_doc) }}" width="100%"
+                                height="650"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -207,17 +262,44 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header  d-flex justify-content-between">
+            <div class="card-header  d-flex justify-content-between align-items-center">
                 <h4 class="font-bold">Edit @if ($user->user_type == 'mobile')
                         {{ Str::headline($user->user_type) }} User
                     @else
                         {{ Str::headline($user->user_type) }}
                     @endif Information</h4>
+                <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#emailInput">Contact with Email
+                    is Required</a>
                 <div class="d-flex">
                     <a href="{{ route('blockUser', ['user_id' => $user->id]) }}" class="btn btn-sm btn-danger">
                         Reject</a>
                     <a href="{{ route('unblockUser', ['user_id' => $user->id]) }}" class="btn btn-sm btn-primary ms-3">
                         Approve</a>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="emailInput" tabindex="-1" aria-labelledby="emailInputLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="emailInputLabel">Email Fieled
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <label for="email">Enter Email</label>
+                                <input placeholder="Surname" type="text" name="surname"
+                                    class="form-control rounded-lg mb-3" required value="" />
+                                <button class="btn btn-sm ms-auto btn-primary" type="submit">Save</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
@@ -303,12 +385,37 @@
                                 </div>
 
                             </div>
+                            @if ($user->user_type == 'mobile')
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="registration_doc"
+                                        class="col-form-label">{{ __('Registration Document') }} <i
+                                            class="text-danger">*</i></label>
+                                    <input type="file" class="form-control" name="registration_doc"
+                                        accept="application/pdf">
+                                    @error('registration_doc')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
 
+                                <div class="col-md-6">
+                                    <label for="full_doc" class="col-form-label">{{ __('Full Document') }} <i
+                                            class="text-danger">*</i></label>
+                                    <input type="file" class="form-control" name="full_doc"
+                                        accept="application/pdf">
+                                    @error('full_doc')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        @endif
                             <div class="p-2 space-y-2">
                                 <h1 class="font-bold">Address</h1>
                                 <input type="text" name="address" class="form-control rounded-lg" required
                                     value="{{ $user->address }}" />
                             </div>
+
+
                             <div class="flex justify-end">
                                 <div class="p-2 flex justify-end items-center">
                                     <button class="bg-blue-500 text-white p-2 px-4 rounded-lg">Save</button>

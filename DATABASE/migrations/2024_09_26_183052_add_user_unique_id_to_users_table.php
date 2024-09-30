@@ -24,6 +24,8 @@ class AddUserUniqueIdToUsersTable extends Migration
             $table->bigInteger('city_id')->nullable();
             $table->string('surname')->nullable();
             $table->text('address')->nullable();
+            $table->string('registration_doc')->nullable();
+            $table->string('full_doc')->nullable();
         });
     }
 
@@ -45,7 +47,9 @@ class AddUserUniqueIdToUsersTable extends Migration
                 'tax_code',
                 'city_id',
                 'surname',
-                'address'
+                'address',
+                'registration_doc',
+                'full_doc'
             ]);
         });
     }

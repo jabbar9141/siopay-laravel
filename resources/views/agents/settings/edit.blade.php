@@ -60,6 +60,26 @@
                             Check Full Document
                         </a>
                     </div>
+                    <div>
+                        <div class="h-20 w-20 rounded-lg flex items-center bg-white">
+                            <img src="{{ asset($agent->photo) }}" alt="" class="rounded-circle">
+                        </div>
+                        <div class="mt-3">
+                            <form action="{{ route('uploadProfileImage', $agent->id) }}" method="post"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('POST')
+                                <label for="photo" class="col-form-label">Select Photo</label>
+                                <input type="file"  name="photo" class="form-control" id="photo">
+                                @error('photo')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                                <div class="text-end mt-3">
+                                    <button type="submit" class="btn  btn-sm btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                     {{-- <form class="w-100" action="{{ route('agents.store') }}" method="post">
                         @csrf
