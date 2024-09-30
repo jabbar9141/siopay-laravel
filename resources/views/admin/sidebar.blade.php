@@ -3,7 +3,7 @@
     <div>
         <div class="brand-logo flex justify-between items-center">
             <a href="{{ route('home') }}" class="text-nowrap logo-img">
-                {{-- <img src="{{ asset('landing/assets/img/gallery/siopay.png') }}" height="45" alt="siopay_logo" /> --}}
+                <img src="{{ asset('landing/assets/img/gallery/siopay.png') }}" height="45" alt="siopay_logo" />
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>

@@ -101,8 +101,8 @@ class AdminController extends Controller
                 return $mar;
             })
             ->addColumn('action', function ($user) {
-                $blockUrl = route('unblockUser', ['user_id' => $user->id]);
-                $unBlockUrl = route('blockUser', ['user_id' => $user->id]);
+                $blockUrl = route('blockUser', ['user_id' => $user->id]);
+                $unBlockUrl = route('unblockUser', ['user_id' => $user->id]);
 
                 $mar = '<div class="d-flex align-items-center">';
 
@@ -163,8 +163,8 @@ class AdminController extends Controller
                 return $mar;
             })
             ->addColumn('action', function ($user) {
-                $blockUrl = route('unblockUser', ['user_id' => $user->id]);
-                $unBlockUrl = route('blockUser', ['user_id' => $user->id]);
+                $blockUrl = route('blockUser', ['user_id' => $user->id]);
+                $unBlockUrl = route('unblockUser', ['user_id' => $user->id]);
                 $mar = '<div class="d-flex align-items-center">';
                 if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'kyc_manager' || Auth::user()->user_type == 'account_manager') {
                     $mar .= '<a href="' . route('agent.editSitting', $user->id) . '" class="btn btn-sm btn-primary rounded" >Profile</a>';
@@ -229,8 +229,8 @@ class AdminController extends Controller
                 return $mar;
             })
             ->addColumn('action', function ($user) {
-                $blockUrl = route('unblockUser', ['user_id' => $user->id]);
-                $unBlockUrl = route('blockUser', ['user_id' => $user->id]);
+                $blockUrl = route('blockUser', ['user_id' => $user->id]);
+                $unBlockUrl = route('unblockUser', ['user_id' => $user->id]);
                 $mar = '<div class="d-flex align-items-center">';
                 if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'kyc_manager' || Auth::user()->user_type == 'account_manager') {
                     $mar .= '<a href="' . route('editUser', $user->id) . '" class="btn btn-sm btn-primary rounded" >Profile</a>';
@@ -300,8 +300,8 @@ class AdminController extends Controller
                 return $mar;
             })
             ->addColumn('action', function ($user) {
-                $blockUrl = route('unblockUser', ['user_id' => $user->id]);
-                $unBlockUrl = route('blockUser', ['user_id' => $user->id]);
+                $blockUrl = route('blockUser', ['user_id' => $user->id]);
+                $unBlockUrl = route('unblockUser', ['user_id' => $user->id]);
 
                 $mar = '<div class="d-flex align-items-center">';
 
@@ -368,8 +368,8 @@ class AdminController extends Controller
                 return $mar;
             })
             ->addColumn('action', function ($user) {
-                $blockUrl = route('unblockUser', ['user_id' => $user->id]);
-                $unBlockUrl = route('blockUser', ['user_id' => $user->id]);
+                $blockUrl = route('blockUser', ['user_id' => $user->id]);
+                $unBlockUrl = route('unblockUser', ['user_id' => $user->id]);
 
                 $mar = '<div class="d-flex align-items-center">';
 
@@ -730,7 +730,6 @@ class AdminController extends Controller
         $request->validate([
             'surname' => 'required',
             'name' => 'required',
-            'password' => 'required',
             'user_type' => 'required',
             'country_id' => 'required',
             'city_id' => 'required',

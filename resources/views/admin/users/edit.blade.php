@@ -30,13 +30,7 @@
         }
     </style>
     <div class="container-fluid">
-        @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li class="text-danger">{{ $error }}</li>
-                @endforeach
-            </ul>
-        @endif
+        @include('admin.partials.notification')
         <div class="row mb-4">
             <div class="col-md-6 ">
                 <div class="card mb-3 h-100">
