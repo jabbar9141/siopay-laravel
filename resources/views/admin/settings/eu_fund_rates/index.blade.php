@@ -2,6 +2,7 @@
 @section('page_title', 'Funds Transfer Rates')
 @section('content')
     <div class="container-fluid">
+
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Settings</h5>
@@ -12,7 +13,7 @@
                         <a href="{{ route('eu_fund_rates.create') }}" class="btn btn-primary float-right">New Rate</a>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body bg-gray-200 rounded-xl">
                         <h5>EU Funds Transfer Rates</h5>
                         <div class="table-responsive">
                             <table id="eu_funds_tbl" class="table table-sm  table-bordered table-striped display">

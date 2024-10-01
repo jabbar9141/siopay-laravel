@@ -3,7 +3,7 @@
     <div>
         <div class="brand-logo flex justify-between items-center">
             <a href="{{ route('home') }}" class="text-nowrap logo-img">
-                {{-- <img src="{{ asset('landing/assets/img/gallery/siopay.png') }}" height="45" alt="siopay_logo" /> --}}
+                <img src="{{ asset('landing/assets/img/gallery/siopay.png') }}" height="45" alt="siopay_logo" />
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
@@ -211,7 +211,9 @@
                         <span class="hide-menu">Profile</span>
                     </a>
                 </li> --}}
-                @if (Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'kyc_manager' || Auth::user()->user_type == 'account_manager')
+                @if (Auth::user()->user_type == 'admin' ||
+                        Auth::user()->user_type == 'kyc_manager' ||
+                        Auth::user()->user_type == 'account_manager')
                     <li class="sidebar-item">
                         <a class="sidebar-link @if (Route::is('allUsers') || Route::is('agent.editSitting') || Route::is('createUser') || Route::is('editUser')) active @endif"
                             href="{{ route('allUsers') }}" aria-expanded="false">
@@ -248,6 +250,18 @@
                                 <i class="fa-solid fa-bullhorn"></i>
                             </span>
                             <span class="hide-menu">Announcements</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link @if (Route::is('admin.settings.*') ||
+                                Route::is('eu_fund_rates.index') ||
+                                Route::is('intl_funds_rate.index') ||
+                                Route::is('transaction_limits.index')) 'active' @endif"
+                            href="{{ route('setting.tabs') }}" aria-expanded="false">
+                            <span>
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </span>
+                            <span class="hide-menu">Setting</span>
                         </a>
                     </li>
                 @endif

@@ -1,5 +1,5 @@
 @extends('admin.app')
-@section('page_title', 'International Funds Transfer Rates')
+@section('page_title', 'Funds Transfer Rates')
 @section('content')
     <div class="container-fluid">
         <div class="card">
@@ -7,23 +7,21 @@
                 <h5 class="card-title fw-semibold mb-4">Settings</h5>
                 @include('admin.settings.nav')
                 <hr>
-                {{-- <div class="card">
+                <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('intl_funds_rate.create') }}" class="btn btn-primary float-right">New Rate</a>
+                        <a href="{{ route('service.create') }}" class="btn btn-primary float-right">New Services</a>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body bg-gray-200 rounded-xl">
-                        <h5>International Funds Transfer Rates</h5>
+                    <div class="card-body rounded-xl bg-gray-200">
+                        <h5>All Service</h5>
                         <div class="table-responsive">
-                            <table id="eu_funds_tbl" class="table table-sm  table-bordered table-striped display">
+                            <table id="service_tbl" class="table table-sm  table-bordered table-striped display">
                                 <thead>
                                     <tr>
                                         <th>S/N</th>
                                         <th>Name</th>
-                                        <th>Locations</th>
-                                        <th>Currencies</th>
-                                        <th>Commision</th>
-                                        <th>Limits(&euro;)</th>
+                                        <th>Service Charges</th>
+                                        <th>Status</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
@@ -61,58 +59,9 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
 @endsection
-@section('scripts')
-{{-- <script>
-    $('#eu_funds_tbl').DataTable({
-                "dom": 'Bfrtip',
-                "iDisplayLength": 50,
-                "lengthMenu": [
-                    [10, 25, 50, 100, -1],
-                    [10, 25, 50, 100, "All"]
-                ],
-                "buttons": ['pageLength', 'copy', 'excel', 'csv', 'pdf', 'print', 'colvis'],
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": "{{ route('IntlFundsTransferRatesList') }}",
-                    "type": "GET"
-                },
-                "columns": [{
-                        "data": "DT_RowIndex"
-                    },
-                    {
-                        "data": "name"
-                    },
-                    {
-                        "data": "location"
-                    },
-                    {
-                        "data": "currencies"
-                    },
-                    {
-                        "data": "commision"
-                    },
-                    {
-                        "data": "limits"
-                    },
-                    {
-                        "data": "edit"
-                    },
-                    {
-                        "data": "delete"
-                    }
-                ],
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": true
-            });
-</script> --}}
-@endsection
+

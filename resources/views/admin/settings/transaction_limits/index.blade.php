@@ -2,7 +2,7 @@
 @section('page_title', 'Transaction Limits')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
+        {{-- <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Settings</h5>
                 @include('admin.settings.nav')
@@ -12,7 +12,7 @@
                         <a href="{{ route('transaction_limits.create') }}" class="btn btn-primary float-right">New Limit</a>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body bg-gray-200 rounded-xl">
                         <div class="table-responsive">
                             <table id="limits_tbl" class="table table-sm  table-bordered table-striped">
                                 <thead>
@@ -31,11 +31,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 @section('scripts')
-    <script>
+    {{-- <script>
         $('#limits_tbl').DataTable({
             "dom": 'Bfrtip',
             "iDisplayLength": 50,
@@ -76,5 +76,5 @@
             "info": true,
             "autoWidth": true
         });
-    </script>
+    </script> --}}
 @endsection

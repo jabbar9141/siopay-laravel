@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ShippingRateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IntlFundTransferOrderController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\TransactionLimitsController;
 use App\Http\Controllers\UserFundsController;
@@ -147,6 +148,10 @@ Route::get('migration', function () {
     //     '--path' => 'database/migrations/2024_09_30_142436_create_services_table.php'
     // ]);
 
+    Artisan::call('migrate', [
+            '--path' => 'database/migrations/2024_10_01_103103_add_column_services_table.php'
+        ]);
+
     return 'Successfully created';
 });
 
@@ -155,6 +160,16 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->middleware(['auth'])->name('home');
 
+Route::get('service/list', [ServiceController::class, 'index'])->name('service.list');
+Route::get('service/list/all', [ServiceController::class, 'list'])->name('service.list.all');
+Route::post('service/post', [ServiceController::class, 'store'])->name('service.post');
+Route::get('service/create', [ServiceController::class, 'create'])->name('service.create');
+Route::get('service/show/{id}', [ServiceController::class, 'show'])->name('service.show');
+Route::get('service/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
+Route::post('service/update/{id}', [ServiceController::class, 'update'])->name('service.update');
+Route::delete('service/destroy/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
+
+Route::get('setting/tabs', [ServiceController::class, 'setting'])->name('setting.tabs');
 
 // Announcements routes
 Route::get('/announcement/index', [AnouncementController::class, 'index'])->name('announcement.index');
