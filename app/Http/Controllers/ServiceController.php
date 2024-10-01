@@ -35,24 +35,29 @@ class ServiceController extends Controller
             })->addColumn('status', function ($row) {
                 $badge = '';
                 if ($row->status) {
-                    $badge .= '<span class="badge rounded bg-info">Active</span>';
+                    $badge .= '<span class="badge rounded-1 bg-info">Active</span>';
                 } else {
-                    $badge .= '<span class="badge rounded bg-info">InActive</span>';
+                    $badge .= '<span class="badge rounded-1 bg-info">InActive</span>';
                 }
                 return $badge;
-            })->addColumn('edit', function ($rate) {
+            })->addColumn('action', function ($rate) {
+                $btn = '';
                 $edit_url = route('service.edit', $rate->id);
-                return '<a href="' . $edit_url . '" class="btn btn-info btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
-            })
-            ->addColumn('delete', function ($rate) {
                 $url = route('service.destroy', $rate->id);
-                return '<form method="POST" action="' . $url . '">
+
+                $btn .= '<div class="d-flex ps-3 gap-4">';
+                $btn .= '<a href="' . $edit_url . '" class="btn btn-info rounded-1 btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
+
+                $btn .= '<form method="POST" action="' . $url . '">
                             <input type="hidden" name = "_token" value = ' . csrf_token() . '>
                             <input type="hidden" name = "_method" value ="DELETE">
                             <button type="submit" onclick="return confirm(\'Are you sure you wish to delete this entry?\')" class="btn btn-sm btn-danger">Delete</button>
                         </form>';
+                        $btn .= '</div>';
+                        return $btn;
             })
-            ->rawColumns(['status', 'edit', 'delete'])
+            ->addColumn('delete', function ($rate) {})
+            ->rawColumns(['status', 'action',])
             ->make(true);
     }
 

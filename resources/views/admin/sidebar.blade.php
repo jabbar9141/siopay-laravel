@@ -259,7 +259,7 @@
                                 Route::is('transaction_limits.index')) 'active' @endif"
                             href="{{ route('setting.tabs') }}" aria-expanded="false">
                             <span>
-                                <i class="fa-solid fa-bullhorn"></i>
+                                <i class="fa-solid fa-gear"></i>
                             </span>
                             <span class="hide-menu">Setting</span>
                         </a>
