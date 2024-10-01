@@ -268,10 +268,11 @@
                     @else
                         {{ Str::headline($user->user_type) }}
                     @endif Information</h4>
-                <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#emailInput">Contact with Email
-                    is Required</a>
+
                 <div class="d-flex">
-                    <a href="{{ route('blockUser', ['user_id' => $user->id]) }}" class="btn btn-sm btn-danger">
+                    <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#emailInput">Contact with Email
+                        is Required</a>
+                    <a href="{{ route('blockUser', ['user_id' => $user->id]) }}" class="btn btn-sm ms-3 btn-danger">
                         Reject</a>
                     <a href="{{ route('unblockUser', ['user_id' => $user->id]) }}" class="btn btn-sm btn-primary ms-3">
                         Approve</a>
@@ -280,23 +281,32 @@
             <!-- Modal -->
             <div class="modal fade" id="emailInput" tabindex="-1" aria-labelledby="emailInputLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="emailInputLabel">Email Fieled
+                <div class="modal-dialog">
+                    <div class="modal-content rounded">
+                        <div class="modal-header" style="background-color: #e5e7eb">
+                            <h5 class="modal-title" id="emailInputLabel">Required Document Request Email
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="">
-                                <label for="email">Enter Email</label>
-                                <input placeholder="Surname" type="text" name="surname"
-                                    class="form-control rounded-lg mb-3" required value="" />
+                            <form action="{{ route('requiredDocumentRequestEmail', $user->id) }}" method="POST">
+                                @csrf
+                                @method('GET')
+                                <label for="user_email">User Email</label>
+                                <input type="email" name="user_email" readonly class="form-control rounded-lg mb-3"
+                                    required value="{{ $user->email }}" />
+                                <input type="checkbox" name="registration_doc">
+                                <label for="RegistrationDocument">Registration Document</label><br>
+                                <input type="checkbox" name="full_doc">
+                                <label for="RegistrationDocument">Full Document</label><br><br>
+                                <label for="required_eamil">Required Document Request Email</label>
+                                <input type="email" name="required_eamil" class="form-control rounded-lg mb-3"
+                                    value="" />
                                 <button class="btn btn-sm ms-auto btn-primary" type="submit">Save</button>
                             </form>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer" style="background-color: #e5e7eb">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -386,29 +396,29 @@
 
                             </div>
                             @if ($user->user_type == 'mobile')
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="registration_doc"
-                                        class="col-form-label">{{ __('Registration Document') }} <i
-                                            class="text-danger">*</i></label>
-                                    <input type="file" class="form-control" name="registration_doc"
-                                        accept="application/pdf">
-                                    @error('registration_doc')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="registration_doc"
+                                            class="col-form-label">{{ __('Registration Document') }} <i
+                                                class="text-danger">*</i></label>
+                                        <input type="file" class="form-control" name="registration_doc"
+                                            accept="application/pdf">
+                                        @error('registration_doc')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
-                                <div class="col-md-6">
-                                    <label for="full_doc" class="col-form-label">{{ __('Full Document') }} <i
-                                            class="text-danger">*</i></label>
-                                    <input type="file" class="form-control" name="full_doc"
-                                        accept="application/pdf">
-                                    @error('full_doc')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <div class="col-md-6">
+                                        <label for="full_doc" class="col-form-label">{{ __('Full Document') }} <i
+                                                class="text-danger">*</i></label>
+                                        <input type="file" class="form-control" name="full_doc"
+                                            accept="application/pdf">
+                                        @error('full_doc')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
                             <div class="p-2 space-y-2">
                                 <h1 class="font-bold">Address</h1>
                                 <input type="text" name="address" class="form-control rounded-lg" required

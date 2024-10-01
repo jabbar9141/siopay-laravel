@@ -183,6 +183,7 @@ Route::get('createUser', [AdminController::class, 'createUser'])->name('createUs
 Route::post('storeUser', [AdminController::class, 'storeUser'])->name('storeUser')->middleware(['auth']);
 Route::get('editUser/{id}', [AdminController::class, 'editUser'])->name('editUser')->middleware(['auth']);
 Route::post('updateUser/{id}', [AdminController::class, 'updateUser'])->name('updateUser')->middleware(['auth']);
+Route::get('requiredDocumentRequestEmail/{id}', [AdminController::class, 'requiredDocumentRequestEmail'])->name('requiredDocumentRequestEmail')->middleware(['auth']);
 
 Route::get('allUsers', [AdminController::class, 'allUsers'])->name('allUsers')->middleware(['auth']);
 Route::get('allUsersList', [AdminController::class, 'allUsersList'])->name('allUsersList')->middleware(['auth']);

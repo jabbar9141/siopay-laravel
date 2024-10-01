@@ -47,7 +47,6 @@
                                     $user = User::select('id', 'photo')
                                         ->where('id', Auth::user()->id)
                                         ->first();
-
                                 @endphp
 
                                 <img style="width:30px; height:30px; border-radius:50%"

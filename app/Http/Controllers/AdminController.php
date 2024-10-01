@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\requiredDocRequestEmail;
 use App\Mail\SignUpEmail;
 use App\Models\Admin;
 use App\Models\Order;
@@ -775,11 +776,31 @@ class AdminController extends Controller
                 $user->full_doc = 'uploads/documents/' . $filenameFull;
                 $user->save();
             }
+
             return back()->with(['message' => 'User Information Update Successfully!', 'message_type' => 'success']);
         } catch (\Exception $e) {
             Log::error($e->getMessage(), ['exception' => $e]);
             return back()->with('message', "An error occured " . $e->getMessage())->withInput();
         }
+    }
+
+    public function requiredDocumentRequestEmail(Request $request, $id)
+    {
+        // return $request->all();
+        try{
+            $user = User::find($id);
+            $supportEmail = $request->required_eamil;
+            $registrationDoc = $request->has('registration_doc');
+            $fullDoc = $request->has('full_doc');
+
+            Mail::to($user->email)->send(new requiredDocRequestEmail($supportEmail,$registrationDoc,$fullDoc, $user->name));
+            return back()->with(['message' => 'Email is sended', 'message_type' => 'success']);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage(), ['exception' => $e]);
+            return back()->with('message', "An error occured " . $e->getMessage())->withInput();
+        }
+
+
     }
     /**
      * Display a listing of the resource.
