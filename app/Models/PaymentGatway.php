@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TransactionLimits extends Model
+class PaymentGatway extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'country_code',
-        'monthly_limit',
-        'daily_limit',
-        'weekly_limit',
+        'account_mode',
+        'public_key',
+        'secret_key',
+        'account_name',
+        'set_as_default'
     ];
 }

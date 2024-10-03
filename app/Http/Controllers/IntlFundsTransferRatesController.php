@@ -29,44 +29,54 @@ class IntlFundsTransferRatesController extends Controller
 
         return Datatables::of($rate)
             ->addIndexColumn()
-            ->addColumn('location', function ($rate) {
-                $mar = "Origin : " . $rate->s_country . "<br>";
-                $mar .= "Destination:" . $rate->rx_country;
+            ->addColumn('origin', function ($rate) {
+                $mar = $rate->s_country;
                 return $mar;
             })
-            ->addColumn('currencies', function ($rate) {
-                $mar = "Origin Currency : " . $rate->s_currency . "<br>";
-                $mar .= "Destination Currency:" . $rate->rx_currency;
+            ->addColumn('destination', function ($rate) {
+                $mar = $rate->rx_country;
+                return $mar;
+            })
+            ->addColumn('origin_currencies', function ($rate) {
+                $mar = $rate->s_currency;
+                return $mar;
+            })
+            ->addColumn('detination_currencies', function ($rate) {
+                $mar = $rate->rx_currency;
                 return $mar;
             })
             ->addColumn('commision', function ($rate) {
-                $mar = "Commision Calculation : " . $rate->calc . "<br>";
-                $mar .= "Commision Value:" . $rate->commision;
-                $mar .= "<br>Exchange Reate:" . $rate->ex_rate;
+                $mar =  $rate->commision;
+                // $mar .= "<br>Exchange Reate:" . $rate->ex_rate;
+                return $mar;
+            })
+            ->addColumn('calc', function ($rate) {
+                $mar = $rate->calc;
                 return $mar;
             })
             ->addColumn('limits', function ($rate) {
-                $mar = "Minimum Amout Allowed : " . $rate->min_amt . "<br>";
-                $mar .= "Maximum Amout Allowed:" . $rate->max_amt;
+                $mar = $rate->min_amt . "-" . $rate->max_amt;
                 return $mar;
             })
-            ->addColumn('edit', function ($rate) {
+            ->addColumn('action', function ($rate) {
                 $edit_url = route('intl_funds_rate.edit', $rate->id);
-                return '<a href="' . $edit_url . '" class="btn btn-info btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
+                $url = route('intl_funds_rate.destroy', $rate->id);
+                $btn =   '<div class="d-flex justify-content-between">';
+                $btn .= '<a style="white-space: nowrap" href="' . $edit_url . '" class="btn btn-info btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
+                $btn .= '<form method="POST" action="' . $url . '">
+                            <input type="hidden" name = "_token" value = ' . csrf_token() . '>
+                            <input type="hidden" name = "_method" value ="DELETE">
+                            <button type="submit" onclick="return confirm(\'Are you sure you wish to delete this entry?\')" class="btn btn-sm btn-danger">Delete</button>
+                        </form>';
+                $btn .= '</div>';
+                return $btn;
             })
             // ->addColumn('view', function ($rate) {
             //     $url = route('intl_funds_rate.show', $rate->id);
             //     return '<a href="' . $url . '" class="btn btn-info btn-sm" ><i class="fa fa-eye"></i> View</a>';
             // })
-            ->addColumn('delete', function ($rate) {
-                $url = route('intl_funds_rate.destroy', $rate->id);
-                return '<form method="POST" action="' . $url . '">
-                            <input type="hidden" name = "_token" value = ' . csrf_token() . '>
-                            <input type="hidden" name = "_method" value ="DELETE">
-                            <button type="submit" onclick="return confirm(\'Are you sure you wish to delete this entry?\')" class="btn btn-sm btn-danger">Delete</button>
-                        </form>';
-            })
-            ->rawColumns(['commision', 'location', 'delete', 'limits', 'edit', 'currencies'])
+            ->addColumn('delete', function ($rate) {})
+            ->rawColumns(['commision', 'calc', 'origin', 'destination', 'limits', 'action', 'origin_currencies', 'detination_currencies'])
             ->make(true);
     }
 

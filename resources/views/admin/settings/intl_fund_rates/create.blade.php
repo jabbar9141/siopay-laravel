@@ -5,17 +5,17 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Settings</h5>
-                @include('admin.settings.nav')
-                <hr>
+                {{-- @include('admin.settings.nav') --}}
+                {{-- <hr> --}}
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('intl_funds_rate.index') }}" class="btn btn-danger float-right"><i
-                                class="fa fa-times"></i>Exit</a>
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5>Create New International Funds Transfer Rate</h5> <a href="{{ route('setting.tabs') }}"
+                            class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @include('admin.partials.notification')
-                        <h5>Create New International Funds Transfer Rate</h5>
+
                         <form action="{{ route('intl_funds_rate.store') }}" method="post">
                             @csrf
                             <div class="row">
@@ -28,25 +28,28 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <div class="ui-widget">
-                                        <label for="s_country">Origin Country</label>
-                                        <input style="width: 100%" type="text" name="s_country"
-                                            value="{{ old('s_country') }}" class="form-control" id="s_country"
-                                            autocomplete="off" placeholder="Sender Country" required>
+                                    <div class="p-2 space-y-2">
+                                        <label class="mb-0" for="s_country">Select Origin Country</label>
+                                        <select name="s_country" id="s_country" class="form-control rounded-lg" required>
+                                            @error('s_country')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-
-                                    <div class="ui-widget">
-                                        <label for="rx_country">Destination Country</label>
-                                        <input style="width: 100%" type="text" name="rx_country"
-                                            value="{{ old('rx_country') }}" class="form-control" id="rx_country"
-                                            placeholder="Receiver Country" autocomplete="off" required>
+                                    <div class="p-2 space-y-2">
+                                        <label class="mb-0" for="rx_country">Select Destination Country</label>
+                                        <select name="rx_country" id="rx_country" class="form-control rounded-lg" required>
+                                            @error('rx_country')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <br>
-                            <div class="row">
+
+                            {{-- <div class="row">
                                 <div class="form-group col-md-6">
                                     <div class="ui-widget">
                                         <label for="s_currency">Origin Currency</label>
@@ -64,26 +67,26 @@
                                             placeholder="Receiver Country" autocomplete="off" required>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <br>
                             <div class="row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label for="calc">Commision Calculation</label>
                                     <select name="calc" id="calc" class="form-control">
                                         <option value="perc">Percentage</option>
                                         <option value="fixed">Fixed Amount</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                     <label for="commision">Commision Amount Or Percentage</label>
                                     <input step="any" min="0" max="100" class="form-control" type="number"
                                         name="commision" id="commision" value="{{ old('commision') }}">
                                 </div>
-                                <div class="form-group col-md-4">
+                                {{-- <div class="form-group col-md-4">
                                     <label for="ex_rate">Exchange rate(destination/origin)</label>
                                     <input step="any" min="0" class="form-control" type="number"
                                         name="ex_rate" id="ex_rate" value="{{ old('ex_rate') }}" required>
-                                </div>
+                                </div> --}}
                             </div>
                             <br>
                             <div class="row">
@@ -108,204 +111,205 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         let countries = [
-                "Afghanistan",
-                "Albania",
-                "Algeria",
-                "Andorra",
-                "Angola",
-                "Antigua and Barbuda",
-                "Argentina",
-                "Armenia",
-                "Australia",
-                "Austria",
-                "Azerbaijan",
-                "Bahamas",
-                "Bahrain",
-                "Bangladesh",
-                "Barbados",
-                "Belarus",
-                "Belgium",
-                "Belize",
-                "Benin",
-                "Bhutan",
-                "Bolivia",
-                "Bosnia and Herzegovina",
-                "Botswana",
-                "Brazil",
-                "Brunei",
-                "Bulgaria",
-                "Burkina Faso",
-                "Burundi",
-                "Cabo Verde",
-                "Cambodia",
-                "Cameroon",
-                "Canada",
-                "Central African Republic",
-                "Chad",
-                "Chile",
-                "China",
-                "Colombia",
-                "Comoros",
-                "Congo (Congo-Brazzaville)",
-                "Costa Rica",
-                "Croatia",
-                "Cuba",
-                "Cyprus",
-                "Czechia (Czech Republic)",
-                "Democratic Republic of the Congo (Congo-Kinshasa)",
-                "Denmark",
-                "Djibouti",
-                "Dominica",
-                "Dominican Republic",
-                "Ecuador",
-                "Egypt",
-                "El Salvador",
-                "Equatorial Guinea",
-                "Eritrea",
-                "Estonia",
-                "Eswatini (fmr. Swaziland)",
-                "Ethiopia",
-                "Fiji",
-                "Finland",
-                "France",
-                "Gabon",
-                "Gambia",
-                "Georgia",
-                "Germany",
-                "Ghana",
-                "Greece",
-                "Grenada",
-                "Guatemala",
-                "Guinea",
-                "Guinea-Bissau",
-                "Guyana",
-                "Haiti",
-                "Holy See",
-                "Honduras",
-                "Hungary",
-                "Iceland",
-                "India",
-                "Indonesia",
-                "Iran",
-                "Iraq",
-                "Ireland",
-                "Israel",
-                "Italy",
-                "Ivory Coast",
-                "Jamaica",
-                "Japan",
-                "Jordan",
-                "Kazakhstan",
-                "Kenya",
-                "Kiribati",
-                "Kuwait",
-                "Kyrgyzstan",
-                "Laos",
-                "Latvia",
-                "Lebanon",
-                "Lesotho",
-                "Liberia",
-                "Libya",
-                "Liechtenstein",
-                "Lithuania",
-                "Luxembourg",
-                "Madagascar",
-                "Malawi",
-                "Malaysia",
-                "Maldives",
-                "Mali",
-                "Malta",
-                "Marshall Islands",
-                "Mauritania",
-                "Mauritius",
-                "Mexico",
-                "Micronesia",
-                "Moldova",
-                "Monaco",
-                "Mongolia",
-                "Montenegro",
-                "Morocco",
-                "Mozambique",
-                "Myanmar (formerly Burma)",
-                "Namibia",
-                "Nauru",
-                "Nepal",
-                "Netherlands",
-                "New Zealand",
-                "Nicaragua",
-                "Niger",
-                "Nigeria",
-                "North Korea",
-                "North Macedonia (formerly Macedonia)",
-                "Norway",
-                "Oman",
-                "Pakistan",
-                "Palau",
-                "Palestine State",
-                "Panama",
-                "Papua New Guinea",
-                "Paraguay",
-                "Peru",
-                "Philippines",
-                "Poland",
-                "Portugal",
-                "Qatar",
-                "Romania",
-                "Russia",
-                "Rwanda",
-                "Saint Kitts and Nevis",
-                "Saint Lucia",
-                "Saint Vincent and the Grenadines",
-                "Samoa",
-                "San Marino",
-                "Sao Tome and Principe",
-                "Saudi Arabia",
-                "Senegal",
-                "Serbia",
-                "Seychelles",
-                "Sierra Leone",
-                "Singapore",
-                "Slovakia",
-                "Slovenia",
-                "Solomon Islands",
-                "Somalia",
-                "South Africa",
-                "South Korea",
-                "South Sudan",
-                "Spain",
-                "Sri Lanka",
-                "Sudan",
-                "Suriname",
-                "Sweden",
-                "Switzerland",
-                "Syria",
-                "Tajikistan",
-                "Tanzania",
-                "Thailand",
-                "Timor-Leste",
-                "Togo",
-                "Tonga",
-                "Trinidad and Tobago",
-                "Tunisia",
-                "Turkey",
-                "Turkmenistan",
-                "Tuvalu",
-                "Uganda",
-                "Ukraine",
-                "United Arab Emirates",
-                "United Kingdom",
-                "United States of America",
-                "Uruguay",
-                "Uzbekistan",
-                "Vanuatu",
-                "Venezuela",
-                "Vietnam",
-                "Yemen",
-                "Zambia",
-                "Zimbabwe",
-            ];
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Antigua and Barbuda",
+            "Argentina",
+            "Armenia",
+            "Australia",
+            "Austria",
+            "Azerbaijan",
+            "Bahamas",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Belgium",
+            "Belize",
+            "Benin",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia and Herzegovina",
+            "Botswana",
+            "Brazil",
+            "Brunei",
+            "Bulgaria",
+            "Burkina Faso",
+            "Burundi",
+            "Cabo Verde",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Central African Republic",
+            "Chad",
+            "Chile",
+            "China",
+            "Colombia",
+            "Comoros",
+            "Congo (Congo-Brazzaville)",
+            "Costa Rica",
+            "Croatia",
+            "Cuba",
+            "Cyprus",
+            "Czechia (Czech Republic)",
+            "Democratic Republic of the Congo (Congo-Kinshasa)",
+            "Denmark",
+            "Djibouti",
+            "Dominica",
+            "Dominican Republic",
+            "Ecuador",
+            "Egypt",
+            "El Salvador",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Estonia",
+            "Eswatini (fmr. Swaziland)",
+            "Ethiopia",
+            "Fiji",
+            "Finland",
+            "France",
+            "Gabon",
+            "Gambia",
+            "Georgia",
+            "Germany",
+            "Ghana",
+            "Greece",
+            "Grenada",
+            "Guatemala",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Haiti",
+            "Holy See",
+            "Honduras",
+            "Hungary",
+            "Iceland",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Ireland",
+            "Israel",
+            "Italy",
+            "Ivory Coast",
+            "Jamaica",
+            "Japan",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kiribati",
+            "Kuwait",
+            "Kyrgyzstan",
+            "Laos",
+            "Latvia",
+            "Lebanon",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Liechtenstein",
+            "Lithuania",
+            "Luxembourg",
+            "Madagascar",
+            "Malawi",
+            "Malaysia",
+            "Maldives",
+            "Mali",
+            "Malta",
+            "Marshall Islands",
+            "Mauritania",
+            "Mauritius",
+            "Mexico",
+            "Micronesia",
+            "Moldova",
+            "Monaco",
+            "Mongolia",
+            "Montenegro",
+            "Morocco",
+            "Mozambique",
+            "Myanmar (formerly Burma)",
+            "Namibia",
+            "Nauru",
+            "Nepal",
+            "Netherlands",
+            "New Zealand",
+            "Nicaragua",
+            "Niger",
+            "Nigeria",
+            "North Korea",
+            "North Macedonia (formerly Macedonia)",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Palau",
+            "Palestine State",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Romania",
+            "Russia",
+            "Rwanda",
+            "Saint Kitts and Nevis",
+            "Saint Lucia",
+            "Saint Vincent and the Grenadines",
+            "Samoa",
+            "San Marino",
+            "Sao Tome and Principe",
+            "Saudi Arabia",
+            "Senegal",
+            "Serbia",
+            "Seychelles",
+            "Sierra Leone",
+            "Singapore",
+            "Slovakia",
+            "Slovenia",
+            "Solomon Islands",
+            "Somalia",
+            "South Africa",
+            "South Korea",
+            "South Sudan",
+            "Spain",
+            "Sri Lanka",
+            "Sudan",
+            "Suriname",
+            "Sweden",
+            "Switzerland",
+            "Syria",
+            "Tajikistan",
+            "Tanzania",
+            "Thailand",
+            "Timor-Leste",
+            "Togo",
+            "Tonga",
+            "Trinidad and Tobago",
+            "Tunisia",
+            "Turkey",
+            "Turkmenistan",
+            "Tuvalu",
+            "Uganda",
+            "Ukraine",
+            "United Arab Emirates",
+            "United Kingdom",
+            "United States of America",
+            "Uruguay",
+            "Uzbekistan",
+            "Vanuatu",
+            "Venezuela",
+            "Vietnam",
+            "Yemen",
+            "Zambia",
+            "Zimbabwe",
+        ];
 
         // Initialize autocomplete
         $("#s_country").autocomplete({
@@ -498,4 +502,54 @@
             minLength: 1 // Minimum number of characters before triggering autocomplete
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+
+            //   $('#residential_country').select2();
+            countries();
+
+
+            function countries() {
+
+                $('#residential_country').html('<option value="" disabled >Select Country</option>');
+                var _token = '{{ csrf_token() }}';
+                let url = "{{ route('ajax-get-countries') }}";
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    dataType: 'json',
+                    data: {
+                        '_token': _token
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $.each(response.countries, function(key, value) {
+                                $("#origin_country_id").append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                            });
+                            $('#origin_country_id').trigger('change');
+
+                            $.each(response.countries, function(key, value) {
+                                $("#destination_country_id").append('<option value="' + value
+                                    .id +
+                                    '">' + value.name + '</option>');
+                            });
+                            $('#destination_country_id').trigger('change');
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: response.message,
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        })
+    </script>
+
 @endsection

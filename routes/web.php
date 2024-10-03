@@ -18,6 +18,7 @@ use App\Http\Controllers\ShippingRateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IntlFundTransferOrderController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SmtpController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\TransactionLimitsController;
 use App\Http\Controllers\UserFundsController;
@@ -148,9 +149,19 @@ Route::get('migration', function () {
     //     '--path' => 'database/migrations/2024_09_30_142436_create_services_table.php'
     // ]);
 
+    // Artisan::call('migrate', [
+    //         '--path' => 'database/migrations/2024_10_01_103103_add_column_services_table.php'
+    //     ]);
+    // Artisan::call('migrate', [
+    //     '--path' => 'database/migrations/2024_10_02_101546_add_column_transaction_limits_table.php'
+    // ]);
+
     Artisan::call('migrate', [
-            '--path' => 'database/migrations/2024_10_01_103103_add_column_services_table.php'
-        ]);
+        '--path' => 'database/migrations/2024_10_02_182727_create_smtps_table.php'
+    ]);
+    Artisan::call('migrate', [
+        '--path' => 'database/migrations/2024_10_02_183125_create_payment_gatways_table.php'
+    ]);
 
     return 'Successfully created';
 });
@@ -168,6 +179,16 @@ Route::get('service/show/{id}', [ServiceController::class, 'show'])->name('servi
 Route::get('service/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
 Route::post('service/update/{id}', [ServiceController::class, 'update'])->name('service.update');
 Route::delete('service/destroy/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
+
+// mail
+Route::get('smtp/list', [SmtpController::class, 'index'])->name('smtp.list');
+Route::get('smtp/list/all', [SmtpController::class, 'list'])->name('smtp.list.all');
+Route::post('smtp/post', [SmtpController::class, 'store'])->name('smtp.post');
+Route::get('smtp/create', [SmtpController::class, 'create'])->name('smtp.create');
+Route::get('smtp/show/{id}', [SmtpController::class, 'show'])->name('smtp.show');
+Route::get('smtp/edit/{id}', [SmtpController::class, 'edit'])->name('smtp.edit');
+Route::post('smtp/update/{id}', [SmtpController::class, 'update'])->name('smtp.update');
+Route::delete('smtp/destroy/{id}', [SmtpController::class, 'destroy'])->name('smtp.destroy');
 
 Route::get('setting/tabs', [ServiceController::class, 'setting'])->name('setting.tabs');
 

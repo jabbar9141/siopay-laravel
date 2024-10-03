@@ -20,19 +20,19 @@ class TransactionLimitsController extends Controller
 
         return DataTables::of($limit)
             ->addIndexColumn()
-            ->addColumn('edit', function ($limit) {
+            ->addColumn('action', function ($limit) {
                 $edit_url = route('transaction_limits.edit', $limit->id);
-                return '<a href="' . $edit_url . '" class="btn btn-info btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
-            })
-            ->addColumn('delete', function ($limit) {
                 $url = route('transaction_limits.destroy', $limit->id);
-                return '<form method="POST" action="' . $url . '">
+                $btn = '<div class="d-flex gap-4 align-items-center">';
+                $btn .= '<a href="' . $edit_url . '" class="btn btn-info btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
+                $btn .= '<form method="POST" action="' . $url . '">
                             <input type="hidden" name = "_token" value = ' . csrf_token() . '>
                             <input type="hidden" name = "_method" value ="DELETE">
                             <button type="submit" onclick="return confirm(\'Are you sure you wish to delete this entry?\')" class="btn btn-sm btn-danger">Delete</button>
                         </form>';
+                return $btn;
             })
-            ->rawColumns(['edit', 'delete'])
+            ->rawColumns(['action'])
             ->make(true);
     }
 
@@ -48,6 +48,7 @@ class TransactionLimitsController extends Controller
                 'country_code' => 'required|string',
                 'daily_limit' => 'required|numeric',
                 'monthly_limit' => 'required|numeric',
+                'Weekly_limit' => 'required|numeric',
             ]);
 
             $c = TransactionLimits::where('country_code', $request->country_code)->count();
@@ -60,6 +61,7 @@ class TransactionLimitsController extends Controller
             $l->country_code = $request->country_code;
             $l->daily_limit = $request->daily_limit;
             $l->monthly_limit = $request->monthly_limit;
+            $l->weekly_limit = $request->Weekly_limit;
             $l->save();
             return back()->with(['message' => 'Transaction Limit Saved', 'message_type' => 'success']);
         } catch (\Exception $e) {

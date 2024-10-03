@@ -10,6 +10,7 @@ use App\Models\IntlFundTransferOrder;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Service;
 use App\Models\User;
 use App\Models\WalkInCustomer;
 use Illuminate\Support\Facades\Auth;
@@ -58,7 +59,8 @@ class HomeController extends Controller
         $rep['total_intl_funds_done'] = IntlFundTransferOrder::where('tx_status', 'done')->count();
         $rep['total_intl_funds_rejected'] = IntlFundTransferOrder::where('tx_status', 'rejected')->count();
         $rep['total_intl_funds_value'] = IntlFundTransferOrder::where('tx_status', 'done')->sum('s_amount');
-
+        $rep['service'] = Service::where('status', 1)->sum('service_charges');
+        // dd($rep['service']);
         return $rep;
     }
 
@@ -368,8 +370,8 @@ class HomeController extends Controller
     }
 
     public function landing(Request $request)
-    {    
-        $announcements = Anouncement::where('status', true)->orderBy('id','desc')->get();
+    {
+        $announcements = Anouncement::where('status', true)->orderBy('id', 'desc')->get();
         if (!empty($request->s_country_eu) && !empty($request->rx_country_eu)) {
             $rate = EUFundsTransferRates::where('s_country_eu', $request->s_country_eu)
                 ->where('rx_country_eu', $request->rx_country_eu)

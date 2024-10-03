@@ -5,17 +5,17 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Settings</h5>
-                @include('admin.settings.nav')
-                <hr>
+                {{-- @include('admin.settings.nav')
+                <hr> --}}
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Create New EU Funds Transfer Rate</h5> <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
                                 class="fa fa-times"></i>Exit</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @include('admin.partials.notification')
-                        <h5>Create New EU Funds Transfer Rate</h5>
+
                         <form action="{{ route('eu_fund_rates.store') }}" method="post">
                             @csrf
                             <div class="row">
@@ -34,13 +34,6 @@
                                             value="{{ old('s_country_eu') }}" class="form-control" id="s_country_eu"
                                             autocomplete="off" placeholder="Sender Country" required>
                                     </div>
-                                    {{-- <select name="origin" id="origin" class="form-control">
-                                        <option value="">--select origin--</option>
-                                        @foreach ($locations as $loc)
-                                            <option value="{{ $loc->id }}">{{ $loc->name }}[Lat:
-                                                {{ $loc->latitude }}, Long: {{ $loc->longitude }}]</option>
-                                        @endforeach
-                                    </select> --}}
                                 </div>
                                 <div class="form-group col-md-6">
 
