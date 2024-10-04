@@ -20,6 +20,12 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#menu3">Services</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#menu4">SMTP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#menu5">Payment Gatway</a>
+                    </li>
                 </ul>
             </div>
             <div class="card-body">
@@ -29,13 +35,13 @@
                 <div class="tab-content">
                     <div class="tab-pane container active" id="home">
                         <div class=" pb-4 d-flex justify-content-between align-items-center">
-                            <h1 style="font-size: 18px;"><b>EU Funds Transfer Rates</b></h1> <a href="{{ route('eu_fund_rates.create') }}"
-                                class="btn btn-primary btn-sm float-right">New Rate</a>
+                            <h1 style="font-size: 18px;"><b>EU Funds Transfer Rates</b></h1> <a
+                                href="{{ route('eu_fund_rates.create') }}" class="btn btn-primary btn-sm float-right">New
+                                Rate</a>
                         </div>
                         <div class="card">
                             <!-- /.card-header -->
                             <div class="card-body bg-gray-200 rounded-xl">
-
                                 <div class="table-responsive">
                                     <table id="eu_funds_tbl" class="table min-w-full dataTable no-footer">
                                         <thead>
@@ -87,8 +93,9 @@
                     </div>
                     <div class="tab-pane container fade" id="menu1">
                         <div class=" pb-4 d-flex justify-content-between align-items-center">
-                            <h1 style="font-size: 18px;"><b>International Funds Transfer Rates</b></h1> <a href="{{ route('intl_funds_rate.create') }}"
-                                class="btn btn-sm btn-primary float-right">New Rate</a>
+                            <h1 style="font-size: 18px;"><b>International Funds Transfer Rates</b></h1> <a
+                                href="{{ route('intl_funds_rate.create') }}" class="btn btn-sm btn-primary float-right">New
+                                Rate</a>
                         </div>
                         <div class="card">
 
@@ -148,7 +155,8 @@
                     </div>
                     <div class="tab-pane container fade" id="menu2">
                         <div class=" pb-4 d-flex justify-content-between align-items-center">
-                            <h1 style="font-size: 18px;"><b>Transaction Limits</b></h1> <a href="{{ route('transaction_limits.create') }}"
+                            <h1 style="font-size: 18px;"><b>Transaction Limits</b></h1> <a
+                                href="{{ route('transaction_limits.create') }}"
                                 class="btn btn-sm btn-primary float-right">New Limit</a>
                         </div>
                         <div class="card">
@@ -167,6 +175,60 @@
                                             </tr>
                                         </thead>
 
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane container fade" id="menu4">
+                        <div class=" pb-4 d-flex justify-content-between align-items-center">
+                            <h1 style="font-size: 18px;"><b>SMTP Credencials</b></h1> <a href="{{ route('smtp.create') }}"
+                                class="btn btn-sm btn-primary float-right">New SMTP</a>
+                        </div>
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <div class="card-body bg-gray-200 rounded-xl">
+                                <div class="table-responsive">
+                                    <table id="smtp_tbl" class="table min-w-full dataTable no-footer">
+                                        <thead>
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th>Mail Host</th>
+                                                <th>Mail Port</th>
+                                                <th>Mail Encryption</th>
+                                                <th>Mail Username</th>
+                                                <th>Mail Password</th>
+                                                <th>Mail from Address</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane container fade" id="menu5">
+                        <div class=" pb-4 d-flex justify-content-between align-items-center">
+                            <h1 style="font-size: 18px;"><b>Payment Gatway</b></h1> <a
+                                href="{{ route('payments_gatway.create') }}"
+                                class="btn btn-sm btn-primary float-right">New Payment Gatway</a>
+                        </div>
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <div class="card-body bg-gray-200 rounded-xl">
+                                <div class="table-responsive">
+                                    <table id="payment_gatway" class="table min-w-full dataTable no-footer">
+                                        <thead>
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th>Account Mode</th>
+                                                <th>Public Key</th>
+                                                <th>Public Secret</th>
+                                                <th>Account Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -274,6 +336,98 @@
                     "data": "action"
                 },
 
+            ],
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true
+        });
+    </script>
+
+    <script>
+        $("#smtp_tbl").DataTable({
+            "dom": '<"d-flex justify-content-between align-items-center"Bf>rt<"bottom"ip>',
+            "iDisplayLength": 50,
+            "lengthMenu": [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            "buttons": ['pageLength', 'copy', 'excel', 'csv', 'pdf', 'print', 'colvis'],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "{{ route('smtp.list.all') }}",
+                "type": "GET"
+            },
+            "columns": [{
+                    "data": "DT_RowIndex"
+                },
+                {
+                    "data": "mail_host"
+                },
+                {
+                    "data": "mail_port"
+                },
+                {
+                    "data": "mail_encreption"
+                },
+                {
+                    "data": "mail_username"
+                },
+
+                {
+                    "data": "mail_password"
+                },
+                {
+                    "data": "mail_from_addressed"
+                },
+                {
+                    "data": "action"
+                }
+            ],
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true
+        });
+    </script>
+    <script>
+        $("#payment_gatway").DataTable({
+            "dom": '<"d-flex justify-content-between align-items-center"Bf>rt<"bottom"ip>',
+            "iDisplayLength": 50,
+            "lengthMenu": [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"]
+            ],
+            "buttons": ['pageLength', 'copy', 'excel', 'csv', 'pdf', 'print', 'colvis'],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "{{ route('payments_gatway.list.all') }}",
+                "type": "GET"
+            },
+            "columns": [{
+                    "data": "DT_RowIndex"
+                },
+                {
+                    "data": "account_mode"
+                },
+                {
+                    "data": "public_key"
+                },
+                {
+                    "data": "secret_key"
+                },
+                {
+                    "data": "account_name"
+                },
+                {
+                    "data": "action"
+                }
             ],
             "paging": true,
             "lengthChange": true,

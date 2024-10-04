@@ -8,39 +8,74 @@
                 @include('admin.settings.nav')
                 <hr>
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('transaction_limits.index') }}" class="btn btn-danger float-right"><i
-                                class="fa fa-times"></i>Exit</a>
+                    <div class="card-header d-flex justify-content-between algin-items-center">
+                        <h1 style="font-size: 18px;"><b>Editing SMTP</b></h1> <a href="{{ route('transaction_limits.index') }}"
+                            class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @include('admin.partials.notification')
-                        <h5>Editing Limit for <b>{{ $limit->country_code }}</b></h5>
-                        <form action="{{ route('transaction_limits.update', $limit->id) }}" method="post">
+                        <form action="{{ route('smtp.update', $smtp->id) }}" method="post">
                             @csrf
-                            @method('PUT')
+                            @method('POST')
                             <div class="row">
-                                <div class="form-group col-md-12">
-                                    <label for="country">Country</label>
-                                    <input type="text" disabled value="{{ $limit->country_code }}" name="country_code"
-                                        id="country_code" class="form-control" required>
+                                <div class="form-group col-md-6">
+                                    <label for="mail_host">Mail Host</label>
+                                    <input class="form-control" type="text" name="mail_host" id="mail_host"
+                                        value="{{ $smtp->mail_host }}">
+                                    @error('mail_host')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="mail_port">Mail Port</label>
+                                    <input class="form-control" type="text" name="mail_port" id="mail_port"
+                                        value="{{ $smtp->mail_port }}">
+                                    @error('mail_port')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="daily_limit">Daily Limit(&euro;)</label>
-                                    <input type="number" value="{{ $limit->daily_limit }}" min="1" step="any"
-                                        class="form-control" name="daily_limit" id="daily_limit" required>
+                                    <label for="mail_encryption">Mail Encrypion</label>
+                                    <input class="form-control" type="text" name="mail_encryption" id="mail_encryption"
+                                        value="{{ $smtp->mail_encreption }}">
+                                    @error('mail_encryption')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="monthly_limit">Monthly Limit</label>
-                                    <input type="number" value="{{ $limit->monthly_limit }}" min="1" step="any"
-                                        class="form-control" name="monthly_limit" id="monthly_limit" required>
+                                    <label for="mail_username">Mail Username</label>
+                                    <input class="form-control" type="text" name="mail_username" id="mail_username"
+                                        value="{{ $smtp->mail_username }}">
+                                    @error('mail_username')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="mail_password">Mail Password</label>
+                                    <input class="form-control" type="text" name="mail_password" id="mail_password"
+                                        value="{{ $smtp->mail_password }}">
+                                    @error('mail_password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="mail_from_addressed">Mail from Addressed</label>
+                                    <input class="form-control" type="text" name="mail_from_addressed"
+                                        value="{{ $smtp->mail_from_addressed }}" id="mail_from_addressed">
+                                    @error('mail_from_addressed')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
                         </form>
                     </div>
                 </div>

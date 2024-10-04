@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ShippingRateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IntlFundTransferOrderController;
+use App\Http\Controllers\PaymentGatwayController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SmtpController;
 use App\Http\Controllers\StateController;
@@ -34,6 +35,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -157,10 +159,10 @@ Route::get('migration', function () {
     // ]);
 
     Artisan::call('migrate', [
-        '--path' => 'database/migrations/2024_10_02_182727_create_smtps_table.php'
+        '--path' => 'database/migrations/2024_10_02_182728_create_smtps_table.php'
     ]);
     Artisan::call('migrate', [
-        '--path' => 'database/migrations/2024_10_02_183125_create_payment_gatways_table.php'
+        '--path' => 'database/migrations/2024_10_02_183126_create_payment_gatways_table.php'
     ]);
 
     return 'Successfully created';
@@ -181,16 +183,41 @@ Route::post('service/update/{id}', [ServiceController::class, 'update'])->name('
 Route::delete('service/destroy/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
 
 // mail
-Route::get('smtp/list', [SmtpController::class, 'index'])->name('smtp.list');
-Route::get('smtp/list/all', [SmtpController::class, 'list'])->name('smtp.list.all');
-Route::post('smtp/post', [SmtpController::class, 'store'])->name('smtp.post');
-Route::get('smtp/create', [SmtpController::class, 'create'])->name('smtp.create');
-Route::get('smtp/show/{id}', [SmtpController::class, 'show'])->name('smtp.show');
-Route::get('smtp/edit/{id}', [SmtpController::class, 'edit'])->name('smtp.edit');
-Route::post('smtp/update/{id}', [SmtpController::class, 'update'])->name('smtp.update');
-Route::delete('smtp/destroy/{id}', [SmtpController::class, 'destroy'])->name('smtp.destroy');
+Route::group(['prefix' => 'smtp/', 'as' => 'smtp.'], function () {
+    Route::get('list', [SmtpController::class, 'index'])->name('list');
+    Route::get('list/all', [SmtpController::class, 'list'])->name('list.all');
+    Route::post('post', [SmtpController::class, 'store'])->name('post');
+    Route::get('create', [SmtpController::class, 'create'])->name('create');
+    Route::get('show/{id}', [SmtpController::class, 'show'])->name('show');
+    Route::get('edit/{id}', [SmtpController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [SmtpController::class, 'update'])->name('update');
+    Route::delete('destroy/{id}', [SmtpController::class, 'destroy'])->name('destroy');
+});
+
+// payment Gatway
+Route::group(['prefix' => 'payments_gatway', 'as' => 'payments_gatway.'], function () {
+    Route::get('list', [PaymentGatwayController::class, 'index'])->name('list');
+    Route::get('list/all', [PaymentGatwayController::class, 'list'])->name('list.all');
+    Route::post('post', [PaymentGatwayController::class, 'store'])->name('post');
+    Route::get('create', [PaymentGatwayController::class, 'create'])->name('create');
+    Route::get('show/{id}', [PaymentGatwayController::class, 'show'])->name('show');
+    Route::get('edit/{id}', [PaymentGatwayController::class, 'edit'])->name('edit');
+    Route::post('update/{id}', [PaymentGatwayController::class, 'update'])->name('update');
+    Route::delete('destroy/{id}', [PaymentGatwayController::class, 'destroy'])->name('destroy');
+});
+
 
 Route::get('setting/tabs', [ServiceController::class, 'setting'])->name('setting.tabs');
+
+Route::get('dinamicMail', function () {
+    $message = 'testing mail';
+    Mail::raw('Hi! WellCome', function ($message) {
+        $message->to('abdullah.islootech@gmail.com')
+            ->subject('Mial Testing');
+    });
+
+    dd('send');
+});
 
 // Announcements routes
 Route::get('/announcement/index', [AnouncementController::class, 'index'])->name('announcement.index');
