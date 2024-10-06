@@ -9,22 +9,31 @@
             <div class="card-header">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#home">EU Funds Transfer Rates</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#home">EU
+                            Funds
+                            Transfer Rates</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu1">Intl Funds Transfer Rates</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#menu1">Intl
+                            Funds Transfer
+                            Rates</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu2">Transaction Limits</a>
+                        <a class="nav-link" data-bs-toggle="tab"
+                            href="#menu2">Transaction
+                            Limits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu3">Services</a>
+                        <a class="nav-link" data-bs-toggle="tab"
+                            href="#menu3">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu4">SMTP</a>
+                        <a class="nav-link" data-bs-toggle="tab"
+                            href="#menu4">SMTP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu5">Payment Gatway</a>
+                        <a class="nav-link" data-bs-toggle="tab"
+                            href="#menu5">Payment Gatway</a>
                     </li>
                 </ul>
             </div>
@@ -34,8 +43,8 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane container active" id="home">
-                        <div class=" pb-4 d-flex justify-content-between align-items-center">
-                            <h1 style="font-size: 18px;"><b>EU Funds Transfer Rates</b></h1> <a
+                        <div class="pb-5 d-flex justify-content-between align-items-center">
+                            <h1 class="fw-semibold" style="font-size: 18px;">EU Funds Transfer Rates</h1> <a
                                 href="{{ route('eu_fund_rates.create') }}" class="btn btn-primary btn-sm float-right">New
                                 Rate</a>
                         </div>
@@ -92,8 +101,8 @@
                         </div>
                     </div>
                     <div class="tab-pane container fade" id="menu1">
-                        <div class=" pb-4 d-flex justify-content-between align-items-center">
-                            <h1 style="font-size: 18px;"><b>International Funds Transfer Rates</b></h1> <a
+                        <div class=" pb-5 d-flex justify-content-between align-items-center">
+                            <h1 class="fw-semibold" style="font-size: 18px;">International Funds Transfer Rates</h1> <a
                                 href="{{ route('intl_funds_rate.create') }}" class="btn btn-sm btn-primary float-right">New
                                 Rate</a>
                         </div>
@@ -110,8 +119,6 @@
                                                 <th>Name</th>
                                                 <th>Origin</th>
                                                 <th>destination</th>
-                                                <th>Origin Currencies</th>
-                                                <th>Destination Currencies</th>
                                                 <th>Commision</th>
                                                 <th>Commision Type</th>
                                                 <th>Limits(&euro;)</th>
@@ -131,7 +138,8 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <h4 class="text-center">Are you sure you want to delete the following location?</h4>
+                                        <h4 class="text-center">Are you sure you want to delete the following location?
+                                        </h4>
                                         <br />
                                         <form class="form-horizontal" role="form">
                                             <div class="form-group">
@@ -154,8 +162,8 @@
                         </div>
                     </div>
                     <div class="tab-pane container fade" id="menu2">
-                        <div class=" pb-4 d-flex justify-content-between align-items-center">
-                            <h1 style="font-size: 18px;"><b>Transaction Limits</b></h1> <a
+                        <div class=" pb-5 d-flex justify-content-between align-items-center">
+                            <h1 class="fw-semibold" style="font-size: 18px;">Transaction Limits</h1> <a
                                 href="{{ route('transaction_limits.create') }}"
                                 class="btn btn-sm btn-primary float-right">New Limit</a>
                         </div>
@@ -167,7 +175,7 @@
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
-                                                <th>Country</th>
+                                                <th>Funds Transfer Type</th>
                                                 <th>Daily Limit(&euro;)</th>
                                                 <th>Weekly Limit(&euro;)</th>
                                                 <th>Monthy Limit(&euro;)</th>
@@ -182,9 +190,9 @@
                     </div>
 
                     <div class="tab-pane container fade" id="menu4">
-                        <div class=" pb-4 d-flex justify-content-between align-items-center">
-                            <h1 style="font-size: 18px;"><b>SMTP Credencials</b></h1> <a href="{{ route('smtp.create') }}"
-                                class="btn btn-sm btn-primary float-right">New SMTP</a>
+                        <div class=" pb-5 d-flex justify-content-between align-items-center">
+                            <h1 style="font-size: 18px;"><b>SMTP Credencials</b></h1> <a
+                                href="{{ route('smtp.create') }}" class="btn btn-sm btn-primary float-right">New SMTP</a>
                         </div>
                         <div class="card">
                             <!-- /.card-header -->
@@ -209,8 +217,8 @@
                         </div>
                     </div>
                     <div class="tab-pane container fade" id="menu5">
-                        <div class=" pb-4 d-flex justify-content-between align-items-center">
-                            <h1 style="font-size: 18px;"><b>Payment Gatway</b></h1> <a
+                        <div class=" pb-5 d-flex justify-content-between align-items-center">
+                            <h1 class="fw-semibold" style="font-size: 18px;">Payment Gatway</h1> <a
                                 href="{{ route('payments_gatway.create') }}"
                                 class="btn btn-sm btn-primary float-right">New Payment Gatway</a>
                         </div>
@@ -245,9 +253,10 @@
                         }
                     </style>
                     <div class="tab-pane container fade" id="menu3">
-                        <div class=" py-2 d-flex justify-content-between align-items-center">
-                            <h5>All Service</h5> <a href="{{ route('service.create') }}"
-                                class="btn btn-primary btn-sm float-right">New Services</a>
+                        <div class=" pb-5 d-flex justify-content-between align-items-center">
+                            <h1 style="font-size: 18px" class="fw-semibold">All Service</h1> <a
+                                href="{{ route('service.create') }}" class="btn btn-primary btn-sm float-right">New
+                                Services</a>
                         </div>
                         <div class="card">
                             <!-- /.card-header -->
@@ -305,6 +314,7 @@
     </div>
 @endsection
 @section('scripts')
+
     <script>
         $('#service_tbl').DataTable({
             "dom": '<"d-flex justify-content-between align-items-center"Bf>rt<"bottom"ip>',
@@ -509,12 +519,12 @@
                 {
                     "data": "destination"
                 },
-                {
-                    "data": "origin_currencies"
-                },
-                {
-                    "data": "detination_currencies"
-                },
+                // {
+                //     "data": "origin_currencies"
+                // },
+                // {
+                //     "data": "detination_currencies"
+                // },
                 {
                     "data": "commision"
                 },

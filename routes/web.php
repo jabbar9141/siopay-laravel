@@ -158,11 +158,14 @@ Route::get('migration', function () {
     //     '--path' => 'database/migrations/2024_10_02_101546_add_column_transaction_limits_table.php'
     // ]);
 
+    // Artisan::call('migrate', [
+    //     '--path' => 'database/migrations/2024_10_02_182728_create_smtps_table.php'
+    // ]);
+    // Artisan::call('migrate', [
+    //     '--path' => 'database/migrations/2024_10_02_183126_create_payment_gatways_table.php'
+    // ]);
     Artisan::call('migrate', [
-        '--path' => 'database/migrations/2024_10_02_182728_create_smtps_table.php'
-    ]);
-    Artisan::call('migrate', [
-        '--path' => 'database/migrations/2024_10_02_183126_create_payment_gatways_table.php'
+        '--path' => 'database/migrations/2024_10_04_051830_add_column_countries_table.php'
     ]);
 
     return 'Successfully created';
@@ -193,6 +196,12 @@ Route::group(['prefix' => 'smtp/', 'as' => 'smtp.'], function () {
     Route::post('update/{id}', [SmtpController::class, 'update'])->name('update');
     Route::delete('destroy/{id}', [SmtpController::class, 'destroy'])->name('destroy');
 });
+
+// array of countries
+
+
+Route::get('eu_countries', [ServiceController::class, 'euCountries']);
+
 
 // payment Gatway
 Route::group(['prefix' => 'payments_gatway', 'as' => 'payments_gatway.'], function () {
@@ -230,6 +239,8 @@ Route::post('ajax-get-country-cities/{countryId}', [CityController::class, 'getC
 Route::post('ajax-get-country-state/{countryId}', [CityController::class, 'getCountryState'])->name('ajax-get-country-state');
 Route::post('ajax-get-states/{countryId}', [StateController::class, 'getStates'])->name('ajax-get-states');
 Route::get('ajax-get-countries/', [CountryController::class, 'getCountries'])->name('ajax-get-countries');
+
+Route::get('ajax-get-eu-countries/', [CountryController::class, 'getEUCountries'])->name('ajax-get-eu-countries');
 
 // Agent Routes
 Route::resource('agents', AgentController::class)->middleware(['auth']);

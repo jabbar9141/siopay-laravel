@@ -78,15 +78,17 @@ class TransactionLimitsController extends Controller
 
     public function update(Request $request, $l)
     {
+        $request->validate([
+            'daily_limit' => 'required|numeric',
+            'monthly_limit' => 'required|numeric',
+            'weekly_limit' => 'required|numeric',
+        ]);
         try {
-            $request->validate([
-                'daily_limit' => 'required|numeric',
-                'monthly_limit' => 'required|numeric',
-            ]);
 
             $l = TransactionLimits::find($l);
             $l->daily_limit = $request->daily_limit;
             $l->monthly_limit = $request->monthly_limit;
+            $l->weekly_limit = $request->weekly_limit;
             $l->update();
             return back()->with(['message' => 'Transaction Limit Updated', 'message_type' => 'success']);
         } catch (\Exception $e) {

@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Settings</h5>
+                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5>Create New Limit</h5> <a href="{{ route('transaction_limits.index') }}"
@@ -20,7 +20,7 @@
                                 <div class="form-group col-md-12">
                                     <label for="country">Funds Transfer Type</label>
                                     <select name="country_code" id="country_code" class="form-control" required>
-                                        <option value="">Select Funds Transfer...</option>
+                                        <option value="">Select Funds Transfer</option>
                                         <option value="AF">Eu</option>
                                         <option value="AF">Intr</option>
                                     </select>

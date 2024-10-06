@@ -5,17 +5,22 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Settings</h5>
-                @include('admin.settings.nav')
-                <hr>
+                {{-- @include('admin.settings.nav')
+                <hr> --}}
                 <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Edit Payment Gatway</h5>
+                        {{-- <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
+                            class="fa fa-times"></i>Exit</a> --}}
+
+                </div>
                     <div class="card-header">
-                        <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
-                                class="fa fa-times"></i>Exit</a>
+
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @include('admin.partials.notification')
-                        <h5>Edit EU Funds Transfer Rate</h5>
+
                         <form action="{{ route('payments_gatway.update', $payment_gatway->id) }}" method="post">
                             @csrf
                             @method('POST')

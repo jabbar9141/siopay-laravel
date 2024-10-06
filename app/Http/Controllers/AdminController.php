@@ -7,6 +7,7 @@ use App\Mail\SignUpEmail;
 use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Service;
 use App\Models\Transaction;
 use App\Models\TransactionLimits;
 use App\Models\User;
@@ -591,6 +592,8 @@ class AdminController extends Controller
         $rep['total_payments_pending'] = Payment::where('status', 'pending')->count();
         $rep['total_payments_failed'] = Payment::where('status', 'failed')->count();
         $rep['total_payments_value'] = Payment::where('status', 'done')->sum('amt_paid');
+        $rep['services'] = Service::where('status', true)->get();
+
 
         return $rep;
     }

@@ -34,7 +34,7 @@
     </div>
 @endsection
 @section('scripts')
-<script>
+{{-- <script>
     $('#orders_tbl').DataTable({
                 "dom": 'Bfrtip',
                 "iDisplayLength": 50,
@@ -75,5 +75,5 @@
                 "info": true,
                 "autoWidth": true
             });
-</script>
+</script> --}}
 @endsection

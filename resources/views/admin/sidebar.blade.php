@@ -253,10 +253,19 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link @if (Route::is('admin.settings.*') ||
-                                Route::is('eu_fund_rates.index') ||
-                                Route::is('intl_funds_rate.index') ||
-                                Route::is('transaction_limits.index')) 'active' @endif"
+                        <a class="sidebar-link @if (Route::is('setting.tabs') ||
+                                Route::is('eu_fund_rates.create') ||
+                                Route::is('intl_funds_rate') ||
+                                Route::is('service.create') ||
+                                Route::is('smtp.create') ||
+                                Route::is('payments_gatway.create') ||
+                                Route::is('eu_fund_rates.edit') ||
+                                Route::is('intl_funds_rate.edit') ||
+                                Route::is('service.edit') ||
+                                Route::is('smtp.edit') ||
+                                Route::is('payments_gatway.edit') ||
+                                Route::is('transaction_limits.edit') ||
+                                Route::is('transaction_limits')) active @endif"
                             href="{{ route('setting.tabs') }}" aria-expanded="false">
                             <span>
                                 <i class="fa-solid fa-gear"></i>

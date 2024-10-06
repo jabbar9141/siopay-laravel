@@ -4,13 +4,15 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Settings</h5>
-                @include('admin.settings.nav')
-                <hr>
+                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
+                {{-- @include('admin.settings.nav')
+                <hr> --}}
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between algin-items-center">
-                        <h1 style="font-size: 18px;"><b>Editing SMTP</b></h1> <a href="{{ route('transaction_limits.index') }}"
+
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5>Editing SMTP</h5><a href="{{ route('transaction_limits.index') }}"
                             class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
+
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">

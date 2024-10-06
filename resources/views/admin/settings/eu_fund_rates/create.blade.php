@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Settings</h5>
+                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 {{-- @include('admin.settings.nav')
                 <hr> --}}
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5>Create New EU Funds Transfer Rate</h5> <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
+                        <h4 class="font-bold">Create New EU Funds Transfer Rate</h4> <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
                                 class="fa fa-times"></i>Exit</a>
                     </div>
                     <!-- /.card-header -->
@@ -20,13 +20,13 @@
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="name">Name</label>
+                                    <label class="font-bold" for="name">Name</label>
                                     <input type="text" class="form-control" name="name" id="name"
                                         value="{{ old('name') }}" required>
                                 </div>
                             </div>
                             <br>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="form-group col-md-6">
                                     <div class="ui-widget">
                                         <label for="s_country_eu">Origin Country</label>
@@ -44,18 +44,40 @@
                                             placeholder="Receiver Country" autocomplete="off" required>
                                     </div>
                                 </div>
+                            </div> --}}
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="p-2 space-y-2">
+                                        <label class="font-bold" for="s_country_eu">Select Origin Country</label>
+                                        <select name="s_country_eu" id="s_country_eu" class="form-control rounded-lg" required>
+                                            @error('s_country_eu')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="p-2 space-y-2">
+                                        <label class="font-bold" for="rx_country_eu">Select Destination Country</label>
+                                        <select name="rx_country_eu" id="rx_country_eu" class="form-control rounded-lg" required>
+                                            @error('rx_country_eu')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="calc">Commision Calculation</label>
+                                    <label class="font-bold" for="calc">Commision Calculation</label>
                                     <select name="calc" id="calc" class="form-control" required>
                                         <option value="perc">Percentage</option>
                                         <option value="fixed">Fixed Amount</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="commision">Commision Amount Or Percentage</label>
+                                    <label class="font-bold" for="commision">Commision Amount Or Percentage</label>
                                     <input step="any" min="0" max="100" class="form-control" type="number"
                                         name="commision" id="commision" value="{{ old('commision') }}" required>
                                 </div>
@@ -63,11 +85,11 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="min_amt">Minimum Amount supported</label>
+                                    <label class="font-bold" for="min_amt">Minimum Amount supported</label>
                                     <input type="number" name="min_amt" id="min_amt" min="0" step="any" class="form-control">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="max_amt">Maximum Amount supported</label>
+                                    <label class="font-bold" for="max_amt">Maximum Amount supported</label>
                                     <input type="number" name="max_amt" id="max_amt" min="0" step="any" class="form-control">
                                 </div>
                             </div>
@@ -81,6 +103,8 @@
     </div>
 @endsection
 @section('scripts')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         const europeanTerritories = [
             // Recognized European Countries
@@ -174,5 +198,55 @@
             source: europeanTerritories,
             minLength: 1 // Minimum number of characters before triggering autocomplete
         });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#s_country_eu').select2()
+            $('#rx_country_eu').select2()
+            //   $('#residential_country').select2();
+            countries();
+
+
+            function countries() {
+
+                $('#rx_country_eu').html('<option value="" disabled >Select Country</option>');
+                $('#s_country_eu').html('<option value="" disabled >Select Country</option>');
+                var _token = '{{ csrf_token() }}';
+                let url = "{{ route('ajax-get-eu-countries') }}";
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    dataType: 'json',
+                    data: {
+                        '_token': _token
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $.each(response.countries, function(key, value) {
+                                $("#s_country_eu").append('<option value="' + value.name +
+                                    '">' + value.name + '</option>');
+                            });
+                            $('#s_country_eu').trigger('change');
+
+                            $.each(response.countries, function(key, value) {
+                                $("#rx_country_eu").append('<option value="' + value
+                                    .name +
+                                    '">' + value.name + '</option>');
+                            });
+                            $('#rx_country_eu').trigger('change');
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: response.message,
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        })
     </script>
 @endsection

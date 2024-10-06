@@ -4,24 +4,24 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Settings</h5>
-                @include('admin.settings.nav')
-                <hr>
+                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
+                {{-- @include('admin.settings.nav')
+                <hr> --}}
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="font-bold">Edit EU Funds Transfer Rate</h4><a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
                                 class="fa fa-times"></i>Exit</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @include('admin.partials.notification')
-                        <h5>Edit EU Funds Transfer Rate</h5>
+                         {{-- @dd($eUFundsTransferRates->toArray()); --}}
                         <form action="{{ route('eu_fund_rates.update', $eUFundsTransferRates->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="name">Name</label>
+                                    <label class="font-bold" for="name">Name</label>
                                     <input type="text" class="form-control" name="name" id="name"
                                         value="{{ $eUFundsTransferRates->name }}" required>
                                 </div>
@@ -29,34 +29,30 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <div class="ui-widget">
-                                        <label for="s_country_eu">Origin Country</label>
-                                        <input style="width: 100%" type="text" name="s_country_eu"
-                                            value="{{ $eUFundsTransferRates->s_country_eu }}" class="form-control"
-                                            id="s_country_eu" autocomplete="off" placeholder="Sender Country" required>
+                                    <div class="p-2 space-y-2">
+                                        <label class="font-bold" for="s_country_eu">Select Origin Country</label>
+                                        <select name="s_country_eu" id="s_country_eu" class="form-control rounded-lg" required>
+                                            @error('s_country_eu')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </select>
                                     </div>
-                                    {{-- <select name="origin" id="origin" class="form-control">
-                                        <option value="">--select origin--</option>
-                                        @foreach ($locations as $loc)
-                                            <option value="{{ $loc->id }}">{{ $loc->name }}[Lat:
-                                                {{ $loc->latitude }}, Long: {{ $loc->longitude }}]</option>
-                                        @endforeach
-                                    </select> --}}
                                 </div>
                                 <div class="form-group col-md-6">
-
-                                    <div class="ui-widget">
-                                        <label for="rx_country_eu">Destination Country</label>
-                                        <input style="width: 100%" type="text" name="rx_country_eu"
-                                            value="{{ $eUFundsTransferRates->rx_country_eu }}" class="form-control"
-                                            id="rx_country_eu" placeholder="Receiver Country" autocomplete="off" required>
+                                    <div class="p-2 space-y-2">
+                                        <label class="font-bold" for="rx_country_eu">Select Destination Country</label>
+                                        <select name="rx_country_eu" id="rx_country_eu" class="form-control rounded-lg" required>
+                                            @error('rx_country_eu')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="calc">Commision Calculation</label>
+                                    <label class="font-bold" for="calc">Commision Calculation</label>
                                     <select name="calc" id="calc" class="form-control" required>
                                         <option value="perc"
                                             {{ $eUFundsTransferRates->calc == 'perc' ? 'selected' : '' }}>Percentage
@@ -67,7 +63,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="commision">Commision Amount Or Percentage</label>
+                                    <label class="font-bold" for="commision">Commision Amount Or Percentage</label>
                                     <input step="any" min="0" max="100" class="form-control" type="number"
                                         name="commision" id="commision" value="{{ $eUFundsTransferRates->commision }}"
                                         required>
@@ -76,12 +72,12 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="min_amt">Minimum Amount supported</label>
+                                    <label class="font-bold" for="min_amt">Minimum Amount supported</label>
                                     <input type="number" name="min_amt" id="min_amt" min="0" step="any"
                                         class="form-control" value="{{ $eUFundsTransferRates->min_amt }}" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="max_amt">Maximum Amount supported</label>
+                                    <label class="font-bold" for="max_amt">Maximum Amount supported</label>
                                     <input type="number" name="max_amt" id="max_amt" min="0" step="any"
                                         class="form-control" value="{{ $eUFundsTransferRates->max_amt }}" required>
                                 </div>
@@ -96,6 +92,73 @@
     </div>
 @endsection
 @section('scripts')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#s_country_eu').select2()
+            $('#rx_country_eu').select2()
+            //   $('#residential_country').select2();
+            countries();
+
+             s_countryValue = @json($eUFundsTransferRates->s_country_eu);
+             rx_countryValue = @json($eUFundsTransferRates->rx_country_eu);
+             console.log(rx_countryValue);
+
+            function countries() {
+
+                $('#rx_country_eu').html('<option value="" disabled >Select Country</option>');
+                $('#s_country_eu').html('<option value="" disabled >Select Country</option>');
+                var _token = '{{ csrf_token() }}';
+                let url = "{{ route('ajax-get-eu-countries') }}";
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    dataType: 'json',
+                    data: {
+                        '_token': _token
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $.each(response.countries, function(key, value) {
+                                if(s_countryValue == value.name) {
+                                    $("#s_country_eu").append('<option selected value="' + value.name +
+                                    '">' + value.name + '</option>');
+                                } else {
+                                    $("#s_country_eu").append('<option value="' + value.name +
+                                    '">' + value.name + '</option>');
+                                }
+
+                            });
+                            $('#s_country_eu').trigger('change');
+
+                            $.each(response.countries, function(key, value) {
+                                if(rx_countryValue == value.name) {
+                                $("#rx_country_eu").append('<option selected value="' + value
+                                    .name +
+                                    '">' + value.name + '</option>');
+                                } else {
+                                    $("#rx_country_eu").append('<option value="' + value
+                                    .name +
+                                    '">' + value.name + '</option>');
+                                }
+                            });
+                            $('#rx_country_eu').trigger('change');
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: response.message,
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        })
+    </script>
     <script>
         const europeanTerritories = [
             // Recognized European Countries

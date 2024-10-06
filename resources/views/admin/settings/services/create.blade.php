@@ -5,8 +5,8 @@
         <div class="card">
             <div class="card-body">
                 {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
-                @include('admin.settings.nav')
-                <hr>
+                {{-- @include('admin.settings.nav') --}}
+                {{-- <hr> --}}
                 <div class="card">
                     <div class="card-header">
                         <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i

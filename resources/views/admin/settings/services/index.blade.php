@@ -5,9 +5,11 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Settings</h5>
-                @include('admin.settings.nav')
+                {{-- @include('admin.settings.nav') --}}
                 <hr>
-                <div class="card">
+
+                @dd($countries);
+                {{-- <div class="card">
                     <div class="card-header">
                         <a href="{{ route('service.create') }}" class="btn btn-primary float-right">New Services</a>
                     </div>
@@ -59,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Settings</h5>
+                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 {{-- @include('admin.settings.nav') --}}
                 {{-- <hr> --}}
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h5>Create New International Funds Transfer Rate</h5> <a href="{{ route('setting.tabs') }}"
+                        <h4 class="font-bold">Create New International Funds Transfer Rate</h4> <a href="{{ route('setting.tabs') }}"
                             class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
                     </div>
                     <!-- /.card-header -->
@@ -20,7 +20,7 @@
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="name">Name</label>
+                                    <label class="font-bold" for="name">Name</label>
                                     <input type="text" class="form-control" name="name" id="name"
                                         value="{{ old('name') }}">
                                 </div>
@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <div class="p-2 space-y-2">
-                                        <label class="mb-0" for="s_country">Select Origin Country</label>
+                                        <label class="font-bold" for="s_country">Select Origin Country</label>
                                         <select name="s_country" id="s_country" class="form-control rounded-lg" required>
                                             @error('s_country')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <div class="p-2 space-y-2">
-                                        <label class="mb-0" for="rx_country">Select Destination Country</label>
+                                        <label class="font-bold" for="rx_country">Select Destination Country</label>
                                         <select name="rx_country" id="rx_country" class="form-control rounded-lg" required>
                                             @error('rx_country')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -48,42 +48,22 @@
                                     </div>
                                 </div>
                             </div>
-
-                            {{-- <div class="row">
-                                <div class="form-group col-md-6">
-                                    <div class="ui-widget">
-                                        <label for="s_currency">Origin Currency</label>
-                                        <input style="width: 100%" type="text" name="s_currency"
-                                            value="{{ old('s_currency') }}" class="form-control" id="s_currency"
-                                            autocomplete="off" placeholder="Sender Country" required>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-
-                                    <div class="ui-widget">
-                                        <label for="rx_currency">Destination Currency</label>
-                                        <input style="width: 100%" type="text" name="rx_currency"
-                                            value="{{ old('rx_currency') }}" class="form-control" id="rx_currency"
-                                            placeholder="Receiver Country" autocomplete="off" required>
-                                    </div>
-                                </div>
-                            </div> --}}
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="calc">Commision Calculation</label>
+                                    <label class="font-bold" for="calc">Commision Calculation</label>
                                     <select name="calc" id="calc" class="form-control">
                                         <option value="perc">Percentage</option>
                                         <option value="fixed">Fixed Amount</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="commision">Commision Amount Or Percentage</label>
+                                    <label class="font-bold" for="commision">Commision Amount Or Percentage</label>
                                     <input step="any" min="0" max="100" class="form-control" type="number"
                                         name="commision" id="commision" value="{{ old('commision') }}">
                                 </div>
                                 {{-- <div class="form-group col-md-4">
-                                    <label for="ex_rate">Exchange rate(destination/origin)</label>
+                                    <label class="font-bold" for="ex_rate">Exchange rate(destination/origin)</label>
                                     <input step="any" min="0" class="form-control" type="number"
                                         name="ex_rate" id="ex_rate" value="{{ old('ex_rate') }}" required>
                                 </div> --}}
@@ -91,12 +71,12 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="min_amt">Minimum Amount supported</label>
+                                    <label class="font-bold" for="min_amt">Minimum Amount supported</label>
                                     <input type="number" name="min_amt" id="min_amt" min="0" step="any"
                                         class="form-control">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="max_amt">Maximum Amount supported</label>
+                                    <label class="font-bold" for="max_amt">Maximum Amount supported</label>
                                     <input type="number" name="max_amt" id="max_amt" min="0" step="any"
                                         class="form-control">
                                 </div>
@@ -111,6 +91,7 @@
     </div>
 @endsection
 @section('scripts')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         let countries = [
@@ -505,14 +486,16 @@
 
     <script>
         $(document).ready(function() {
-
+            $('#s_country').select2()
+            $('#rx_country').select2()
             //   $('#residential_country').select2();
             countries();
 
 
             function countries() {
 
-                $('#residential_country').html('<option value="" disabled >Select Country</option>');
+                $('#s_country').html('<option value="" disabled >Select Country</option>');
+                $('#rx_country').html('<option value="" disabled >Select Country</option>');
                 var _token = '{{ csrf_token() }}';
                 let url = "{{ route('ajax-get-countries') }}";
                 $.ajax({
@@ -525,17 +508,17 @@
                     success: function(response) {
                         if (response.success) {
                             $.each(response.countries, function(key, value) {
-                                $("#origin_country_id").append('<option value="' + value.id +
+                                $("#s_country").append('<option value="' + value.name +
                                     '">' + value.name + '</option>');
                             });
-                            $('#origin_country_id').trigger('change');
+                            $('#s_country').trigger('change');
 
                             $.each(response.countries, function(key, value) {
-                                $("#destination_country_id").append('<option value="' + value
-                                    .id +
+                                $("#rx_country").append('<option value="' + value
+                                    .name +
                                     '">' + value.name + '</option>');
                             });
-                            $('#destination_country_id').trigger('change');
+                            $('#rx_country').trigger('change');
                         } else {
                             Swal.fire({
                                 icon: 'error',

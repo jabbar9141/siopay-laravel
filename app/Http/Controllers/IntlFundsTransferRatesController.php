@@ -37,14 +37,14 @@ class IntlFundsTransferRatesController extends Controller
                 $mar = $rate->rx_country;
                 return $mar;
             })
-            ->addColumn('origin_currencies', function ($rate) {
-                $mar = $rate->s_currency;
-                return $mar;
-            })
-            ->addColumn('detination_currencies', function ($rate) {
-                $mar = $rate->rx_currency;
-                return $mar;
-            })
+            // ->addColumn('origin_currencies', function ($rate) {
+            //     $mar = $rate->s_currency;
+            //     return $mar;
+            // })
+            // ->addColumn('detination_currencies', function ($rate) {
+            //     $mar = $rate->rx_currency;
+            //     return $mar;
+            // })
             ->addColumn('commision', function ($rate) {
                 $mar =  $rate->commision;
                 // $mar .= "<br>Exchange Reate:" . $rate->ex_rate;
@@ -76,7 +76,7 @@ class IntlFundsTransferRatesController extends Controller
             //     return '<a href="' . $url . '" class="btn btn-info btn-sm" ><i class="fa fa-eye"></i> View</a>';
             // })
             ->addColumn('delete', function ($rate) {})
-            ->rawColumns(['commision', 'calc', 'origin', 'destination', 'limits', 'action', 'origin_currencies', 'detination_currencies'])
+            ->rawColumns(['commision', 'calc', 'origin', 'destination', 'limits', 'action'])
             ->make(true);
     }
 
@@ -103,11 +103,8 @@ class IntlFundsTransferRatesController extends Controller
                 'name' => 'required',
                 's_country' => 'required',
                 'rx_country' => 'required',
-                's_currency' => 'required',
-                'rx_currency' => 'required',
                 'calc' => 'required',
                 'commision' => 'required',
-                'ex_rate' => 'required',
                 'min_amt' => 'required',
                 'max_amt' => 'required'
 
@@ -117,10 +114,7 @@ class IntlFundsTransferRatesController extends Controller
             $l->name = $request->name;
             $l->s_country = $request->s_country;
             $l->rx_country = $request->rx_country;
-            $l->s_currency = $request->s_currency;
-            $l->rx_currency = $request->rx_currency;
             $l->calc = $request->calc;
-            $l->ex_rate = $request->ex_rate;
             $l->commision = $request->commision;
             $l->min_amt = $request->min_amt;
             $l->max_amt = $request->max_amt;
@@ -173,11 +167,8 @@ class IntlFundsTransferRatesController extends Controller
                 'name' => 'required',
                 's_country' => 'required',
                 'rx_country' => 'required',
-                's_currency' => 'required',
-                'rx_currency' => 'required',
                 'calc' => 'required',
                 'commision' => 'required',
-                'ex_rate' => 'required',
                 'min_amt' => 'required',
                 'max_amt' => 'required'
 
@@ -187,11 +178,8 @@ class IntlFundsTransferRatesController extends Controller
             $l->name = $request->name;
             $l->s_country = $request->s_country;
             $l->rx_country = $request->rx_country;
-            $l->s_currency = $request->s_currency;
-            $l->rx_currency = $request->rx_currency;
             $l->calc = $request->calc;
             $l->commision = $request->commision;
-            $l->ex_rate = $request->ex_rate;
             $l->min_amt = $request->min_amt;
             $l->max_amt = $request->max_amt;
             $l->update();

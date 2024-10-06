@@ -59,8 +59,8 @@ class HomeController extends Controller
         $rep['total_intl_funds_done'] = IntlFundTransferOrder::where('tx_status', 'done')->count();
         $rep['total_intl_funds_rejected'] = IntlFundTransferOrder::where('tx_status', 'rejected')->count();
         $rep['total_intl_funds_value'] = IntlFundTransferOrder::where('tx_status', 'done')->sum('s_amount');
-        $rep['service'] = Service::where('status', 1)->sum('service_charges');
-        // dd($rep['service']);
+        $rep['services'] = Service::where('status', 1)->get();
+
         return $rep;
     }
 

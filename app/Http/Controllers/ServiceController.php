@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -53,8 +54,8 @@ class ServiceController extends Controller
                             <input type="hidden" name = "_method" value ="DELETE">
                             <button type="submit" onclick="return confirm(\'Are you sure you wish to delete this entry?\')" class="btn btn-sm btn-danger">Delete</button>
                         </form>';
-                        $btn .= '</div>';
-                        return $btn;
+                $btn .= '</div>';
+                return $btn;
             })
             ->addColumn('delete', function ($rate) {})
             ->rawColumns(['status', 'action',])
@@ -104,6 +105,83 @@ class ServiceController extends Controller
             Log::error($th->getMessage(), ['exception' => $th]);
             return back()->with(['message', "An error occured " . $th->getMessage()]);
         }
+    }
+
+    public function euCountries()
+    {
+
+        $eus = [
+            'Cyprus',
+            'Czech',
+            'Republic',
+            'Netherlands',
+            'Lichtenstein',
+            'Vatican',
+            'Austria',
+            'Belgium',
+            'Bulgaria',
+            'Croatia',
+            'Denmark',
+            'Estonia',
+            'Finland',
+            'Austria',
+            'France',
+            'Germany',
+            'Greece',
+            'Hungary',
+            'Ireland',
+            'Italy',
+            'Latvia',
+            'Lithuania',
+            'Luxembourg',
+            'Malta',
+            'Poland',
+            'Portugal',
+            'Romania',
+            'Slovenia',
+            'Slovakia',
+            'Spain',
+            'Sweden',
+            'Andorra',
+            'Iceland',
+            'Monaco',
+            'Norway',
+            'San Marino',
+            'Switzerland',
+            'United Kingdom',
+        ];
+        return $eus;
+        for ($i = 0; $i < count($eus); $i++) {
+            Country::insert([
+                'name' => $eus[$i],
+            ]);
+            // return 'success';
+        }
+
+        $countries = Country::select('id', 'name')->whereIn('name', $eus)->get();
+
+        foreach ($countries as $country) {
+            Country::where('name', $country->name)->update([
+                'is_count_eu' => 1,
+            ]);
+        }
+
+        //find unique
+        $unique = Country::select('name')->where('is_count_eu', 1)->distinct()->get();
+        // dd($unique->toArray());
+
+        // find duplicate
+        $countries = Country::select('name')->groupBy('name')->havingRaw('count(*) > 1')->get();
+
+        $countries = Country::where('is_count_eu', 1)->chunk(50, function ($items) use ($unique) {
+            foreach ($items as $value) {
+                if (!$unique->contains('id', $value->id)) {
+                    $value->delete();
+                }
+            }
+        });
+
+        // return view('admin.settings.services.index', compact('countries'));
     }
 
     /**

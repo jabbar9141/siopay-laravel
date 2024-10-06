@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Settings</h5>
+                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5>Add New Payment Gatway</h5> <a href="{{ route('transaction_limits.index') }}"
@@ -19,7 +19,11 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="account_mode">Account Mode</label>
-                                    <input class="form-control" type="text" name="account_mode" id="account_mode">
+                                    <select name="account_mode" id="account_mode" class="form-control">
+                                        <option value="send" selected>Select Account Mode</option>
+                                        <option value="send">Send</option>
+                                        <option value="fixed">Live</option>
+                                    </select>
                                     @error('account_mode')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror

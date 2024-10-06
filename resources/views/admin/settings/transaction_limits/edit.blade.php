@@ -4,17 +4,17 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Settings</h5>
-                @include('admin.settings.nav')
-                <hr>
+                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
+                {{-- @include('admin.settings.nav')
+                <hr> --}}
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('transaction_limits.index') }}" class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Editing Limit for <b>{{$limit->country_code}}</b></h5><a href="{{ route('transaction_limits.index') }}" class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                             @include('admin.partials.notification')
-                            <h5>Editing Limit for <b>{{$limit->country_code}}</b></h5>
+
                             <form action="{{ route('transaction_limits.update', $limit->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
@@ -26,11 +26,16 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="daily_limit">Daily Limit(&euro;)</label>
                                         <input type="number" value="{{$limit->daily_limit}}" min="1" step="any" class="form-control" name="daily_limit" id="daily_limit" required>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
+                                        <label for="Weekly_limit">Weekly Limit</label>
+                                        <input type="number" min="1" step="any" class="form-control" value="{{$limit->weekly_limit}}"
+                                            name="Weekly_limit" id="Weekly_limit" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
                                         <label for="monthly_limit">Monthly Limit</label>
                                         <input type="number" value="{{$limit->monthly_limit}}" min="1" step="any" class="form-control" name="monthly_limit" id="monthly_limit" required>
                                     </div>

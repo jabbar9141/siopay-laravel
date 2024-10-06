@@ -29,10 +29,10 @@ class PaymentGatwayController extends Controller
                 return $row->account_mode;
             })
             ->addColumn('public_key', function ($row) {
-                return $row->public_key;
+                return str_pad(substr($row->public_key, 0, 12), 15, '.', STR_PAD_RIGHT);
             })
             ->addColumn('secret_key', function ($row) {
-                return $row->secret_key;
+                return str_pad(substr($row->secret_key, 0, 12), 15, '.', STR_PAD_RIGHT);
             })
             ->addColumn('account_name', function ($row) {
                 return $row->account_name;

@@ -208,55 +208,16 @@
                     <div class="w-100 px-4">
                         <h1 class="font-bold text-lg">MORE SERVICES</h1>
                         <div class="flex justify-between w-100">
+                            @foreach ($admin_rep['services'] as  $service)
+
                             <div class="items-center flex justify-center flex-col cursor-pointer" id="buyelectric">
-                                <div
-                                    class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
-                                    <svg class="text-blue-500" xmlns="http://www.w3.org/2000/svg" width="1em"
-                                        height="1em" viewBox="0 0 1024 1024">
-                                        <path fill="currentColor"
-                                            d="M848 359.3H627.7L825.8 109c4.1-5.3.4-13-6.3-13H436c-2.8 0-5.5 1.5-6.9 4L170 547.5c-3.1 5.3.7 12 6.9 12h174.4l-89.4 357.6c-1.9 7.8 7.5 13.3 13.3 7.7L853.5 373c5.2-4.9 1.7-13.7-5.5-13.7" />
-                                    </svg>
+                                <div class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
+                                    <img src="{{ asset($service->logo) }}" alt="">
                                 </div>
-                                <h1 class="text-blue-400 text-center">Electricity</h1>
+                                <h1 class="text-blue-400 text-center">{{ $service->name }}</h1>
                             </div>
 
-                            <div class="items-center flex flex-col cursor-pointer">
-                                <div
-                                    class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
-                                    <svg class="text-blue-500" xmlns="http://www.w3.org/2000/svg" width="1em"
-                                        height="1em" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M5 6h14c.55 0 1-.45 1-1s-.45-1-1-1H5c-.55 0-1 .45-1 1s.45 1 1 1m15.16 1.8c-.09-.46-.5-.8-.98-.8H4.82c-.48 0-.89.34-.98.8l-1 5c-.12.62.35 1.2.98 1.2H4v5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-5h4v5c0 .55.45 1 1 1s1-.45 1-1v-5h.18c.63 0 1.1-.58.98-1.2zM12 18H6v-4h6z" />
-                                    </svg>
-                                </div>
-                                <h1 class="text-blue-400 text-center">Pick Up Location</h1>
-                            </div>
-
-                            <div class="items-center flex justify-center flex-col cursor-pointer">
-                                <div
-                                    class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
-                                    <svg class="text-blue-500" xmlns="http://www.w3.org/2000/svg" width="1em"
-                                        height="1em" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M12 12.5a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7M10.5 16a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0" />
-                                        <path fill="currentColor"
-                                            d="M17.526 5.116L14.347.659L2.658 9.997L2.01 9.99V10H1.5v12h21V10h-.962l-1.914-5.599zM19.425 10H9.397l7.469-2.546l1.522-.487zM15.55 5.79L7.84 8.418l6.106-4.878zM3.5 18.169v-4.34A3 3 0 0 0 5.33 12h13.34a3 3 0 0 0 1.83 1.83v4.34A3 3 0 0 0 18.67 20H5.332A3.01 3.01 0 0 0 3.5 18.169" />
-                                    </svg>
-                                </div>
-                                <h1 class="text-blue-400 text-center">Money Transfer</h1>
-                            </div>
-
-                            <div class="items-center flex justify-center flex-col cursor-pointer">
-                                <div
-                                    class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
-                                    <svg class="text-blue-500" xmlns="http://www.w3.org/2000/svg" width="1em"
-                                        height="1em" viewBox="0 0 512 512">
-                                        <path fill="currentColor"
-                                            d="M32 64C32 28.7 60.7 0 96 0h160c35.3 0 64 28.7 64 64v192h8c48.6 0 88 39.4 88 88v32c0 13.3 10.7 24 24 24s24-10.7 24-24V222c-27.6-7.1-48-32.2-48-62V96l-32-32c-8.8-8.8-8.8-23.2 0-32s23.2-8.8 32 0l77.3 77.3c12 12 18.7 28.3 18.7 45.3V376c0 39.8-32.2 72-72 72s-72-32.2-72-72v-32c0-22.1-17.9-40-40-40h-8v144c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32zm64 16v96c0 8.8 7.2 16 16 16h128c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16" />
-                                    </svg>
-                                </div>
-                                <h1 class="text-blue-400 text-center">Gas Refill</h1>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -345,20 +306,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="container mt-4">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card rounded">
-                                <div class="card-header">
-                                    <h5>Total Service Charges</h5>
-                                </div>
-                                <div class="card-body rounded bg-gray-200">
-                                    <p class="text-center"><b>{{ $admin_rep['service'] }}</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <script>
                     var airtimebtn = document.getElementById('buyairtime');
