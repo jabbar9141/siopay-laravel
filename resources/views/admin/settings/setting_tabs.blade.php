@@ -334,16 +334,27 @@
                     "data": "DT_RowIndex"
                 },
                 {
-                    "data": "name"
+                    "data": "name",
+                    "searchable": true,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
                 {
-                    "data": "service_charges"
+                    "data": "service_charges",
+                    "searchable": false,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
                 {
-                    "data": "status"
+                    "data": "status",
+                    "searchable": false,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
                 {
-                    "data": "action"
+                    "data": "action",
+                    "searchable": false,
+                    "orderable": false,
                 },
 
             ],
@@ -375,7 +386,7 @@
                     "data": "DT_RowIndex"
                 },
                 {
-                    "data": "mail_host"
+                    "data": "mail_host",
                 },
                 {
                     "data": "mail_port"
@@ -528,12 +539,6 @@
                     "orderable": false,
                     "class": "text-nowrap",
                 },
-                // {
-                //     "data": "origin_currencies"
-                // },
-                // {
-                //     "data": "detination_currencies"
-                // },
                 {
                     "data": "commision",
                     "searchable": false,
@@ -590,17 +595,17 @@
                 },
                 {
                     "data": "name",
-                    "searchable": false,
+                    "searchable": true,
                     "orderable": false
                 },
                 {
                     "data": "origin",
-                    "searchable": false,
+                    "searchable": true,
                     "orderable": false
                 },
                 {
                     "data": "destination",
-                    "searchable": false,
+                    "searchable": true,
                     "orderable": false
                 },
                 {

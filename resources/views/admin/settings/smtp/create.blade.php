@@ -2,14 +2,9 @@
 @section('page_title', 'Create Location')
 @section('content')
     <div class="container-fluid">
-        {{-- <div class="card">
-            <div class="card-body"> --}}
-                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="fw-simibold" style="font-size: 18px;">Create New SMTP Credencials</h5>
-                         {{-- <a href="{{ route('transaction_limits.index') }}"
-                            class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a> --}}
+                        <h4 class="fw-bold">Create New SMTP Credencials</h4>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -19,14 +14,14 @@
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="mail_host">Mail Host</label>
+                                    <h1 class="fw-bold">Mail Host</h1>
                                     <input class="form-control" type="text" name="mail_host" id="mail_host">
                                     @error('mail_host')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="mail_port">Mail Port</label>
+                                    <h1 class="fw-bold">Mail Port</h1>
                                     <input class="form-control" type="text" name="mail_port" id="mail_port">
                                     @error('mail_port')
                                         <p class="text-danger">{{ $message }}</p>
@@ -36,7 +31,7 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="mail_encryption">Mail Encrypion</label>
+                                    <h1 class="fw-bold">Mail Encrypion</h1>
                                     <input class="form-control" type="text" name="mail_encryption" id="mail_encryption">
                                     @error('mail_encryption')
                                         <p class="text-danger">{{ $message }}</p>
@@ -44,7 +39,7 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="mail_username">Mail Username</label>
+                                    <h1 class="fw-bold">Mail Username</h1>
                                     <input class="form-control" type="text" name="mail_username" id="mail_username">
                                     @error('mail_username')
                                         <p class="text-danger">{{ $message }}</p>
@@ -54,7 +49,7 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="mail_password">Mail Password</label>
+                                    <h1 class="fw-bold">Mail Password</h1>
                                     <input class="form-control" type="text" name="mail_password" id="mail_password">
                                     @error('mail_password')
                                         <p class="text-danger">{{ $message }}</p>
@@ -63,7 +58,7 @@
 
 
                                 <div class="form-group col-md-6">
-                                    <label for="mail_from_addressed">Mail from Addressed</label>
+                                    <h1 class="fw-bold">Mail from Addressed</h1>
                                     <input class="form-control" type="text" name="mail_from_addressed" id="mail_from_addressed">
                                     @error('mail_from_addressed')
                                         <p class="text-danger">{{ $message }}</p>
@@ -71,7 +66,7 @@
                                 </div>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>
