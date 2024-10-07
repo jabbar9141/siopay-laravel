@@ -19,7 +19,7 @@ class CreatePaymentGatwaysTable extends Migration
             $table->string('public_key')->nullable();
             $table->string('secret_key')->nullable();
             $table->string('account_name')->nullable();
-            $table->boolean('set_as_default')->nullable()->default(true);
+            $table->boolean('set_as_default')->nullable()->default(false);
             $table->timestamps();
         });
     }

@@ -2,6 +2,11 @@
 @section('page_title', 'Edit Funds Transfer Rate')
 @section('content')
     <div class="container-fluid">
+        <style>
+            label {
+                color: black !important;
+            }
+        </style>
                 {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 {{-- @include('admin.settings.nav')
                 <hr> --}}
@@ -20,7 +25,7 @@
                             @method('PUT')
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label class="font-bold" for="name">Name</label>
+                                    <h1 style="color: black;" class="font-bold">Name</h1>
                                     <input type="text" class="form-control" name="name" id="name"
                                         value="{{ $eUFundsTransferRates->name }}" required>
                                 </div>
@@ -29,7 +34,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <div class="p-2 space-y-2">
-                                        <label class="font-bold" for="s_country_eu">Select Origin Country</label>
+                                        <h1 style="color: black;" class="font-bold">Select Origin Country</h1>
                                         <select name="s_country_eu" id="s_country_eu" class="form-control rounded-lg" required>
                                             @error('s_country_eu')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -39,7 +44,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <div class="p-2 space-y-2">
-                                        <label class="font-bold" for="rx_country_eu">Select Destination Country</label>
+                                        <h1 style="color: black;" class="font-bold">Select Destination Country</h1>
                                         <select name="rx_country_eu" id="rx_country_eu" class="form-control rounded-lg" required>
                                             @error('rx_country_eu')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -51,7 +56,7 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label class="font-bold" for="calc">Commision Calculation</label>
+                                    <h1 style="color: black;" class="font-bold">Commision Calculation</h1>
                                     <select name="calc" id="calc" class="form-control" required>
                                         <option value="perc"
                                             {{ $eUFundsTransferRates->calc == 'perc' ? 'selected' : '' }}>Percentage
@@ -62,7 +67,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="font-bold" for="commision">Commision Amount Or Percentage</label>
+                                    <h1 style="color: black;" class="font-bold">Commision Amount Or Percentage</h1>
                                     <input step="any" min="0" max="100" class="form-control" type="number"
                                         name="commision" id="commision" value="{{ $eUFundsTransferRates->commision }}"
                                         required>
@@ -71,12 +76,12 @@
                             <br>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label class="font-bold" for="min_amt">Minimum Amount supported</label>
+                                    <h1 style="color: black;" class="font-bold">Minimum Amount supported</h1>
                                     <input type="number" name="min_amt" id="min_amt" min="0" step="any"
                                         class="form-control" value="{{ $eUFundsTransferRates->min_amt }}" required>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="font-bold" for="max_amt">Maximum Amount supported</label>
+                                    <h1 style="color: black;" class="font-bold">Maximum Amount supported</h1>
                                     <input type="number" name="max_amt" id="max_amt" min="0" step="any"
                                         class="form-control" value="{{ $eUFundsTransferRates->max_amt }}" required>
                                 </div>

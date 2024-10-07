@@ -23,7 +23,7 @@ class CreateSmtpsTable extends Migration
                 $table->string('mail_username')->nullable();
                 $table->string('mail_password')->nullable();
                 $table->string('mail_from_addressed')->nullable();
-                $table->boolean('set_as_default')->nullable()->default(true);
+                $table->boolean('set_as_default')->nullable()->default(false);
                 $table->timestamps();
             });
         }
