@@ -47,7 +47,7 @@ class ServiceController extends Controller
                 $url = route('service.destroy', $rate->id);
 
                 $btn .= '<div class="d-flex ps-3 gap-4">';
-                $btn .= '<a href="' . $edit_url . '" class="btn btn-info rounded-1 btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
+                $btn .= '<a style="white-space:nowrap;" href="' . $edit_url . '" class="btn btn-info rounded-1 btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
 
                 $btn .= '<form method="POST" action="' . $url . '">
                             <input type="hidden" name = "_token" value = ' . csrf_token() . '>
@@ -100,7 +100,7 @@ class ServiceController extends Controller
                 'logo' => 'uploads/services/' . $serviceLogoName
             ]);
 
-            return redirect()->route('service.list')->with(['message' => 'add Successfully.', 'message_type' => 'success']);
+            return redirect()->route('setting.tabs')->with(['message' => 'add Successfully.', 'message_type' => 'success']);
         } catch (\Throwable $th) {
             Log::error($th->getMessage(), ['exception' => $th]);
             return back()->with(['message', "An error occured " . $th->getMessage()]);
@@ -149,6 +149,12 @@ class ServiceController extends Controller
             'Switzerland',
             'United Kingdom',
         ];
+        foreach ($eus as $value) {
+            Country::create([
+                'name' => $value,
+            ]);
+        }
+      
         Country::whereIn('name', $eus)->update([
             'is_count_eu' => 1,
         ]);
@@ -215,7 +221,7 @@ class ServiceController extends Controller
             $service->save();
 
 
-            return redirect()->route('service.list')->with(['message' => 'Updated Successfully.', 'message_type' => 'success']);
+            return redirect()->route('setting.tabs')->with(['message' => 'Updated Successfully.', 'message_type' => 'success']);
         } catch (\Throwable $th) {
             Log::error($th->getMessage(), ['exception' => $th]);
             return back()->with(['message', "An error occured " . $th->getMessage()]);

@@ -15,7 +15,7 @@ class AddExternalApplicantIdToKycTable extends Migration
     {
         Schema::table('kyc', function (Blueprint $table) {
             //external id for the users KYC externaly at siodatacheck
-            $table->string('external_applicant_id')->after('user_id')->nullable();
+            // $table->string('external_applicant_id')->after('user_id')->nullable();
         });
     }
 

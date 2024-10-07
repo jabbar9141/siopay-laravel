@@ -2,15 +2,14 @@
 @section('page_title', 'Edit Funds Transfer Rate')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
                 {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 {{-- @include('admin.settings.nav')
                 <hr> --}}
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="font-bold">Edit EU Funds Transfer Rate</h4><a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
-                                class="fa fa-times"></i>Exit</a>
+                        <h4 class="fw-simibold" style="font-size: 18px;">Edit EU Funds Transfer Rate</h4>
+                        {{-- <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
+                                class="fa fa-times"></i>Exit</a> --}}
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -87,8 +86,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
 @endsection
 @section('scripts')

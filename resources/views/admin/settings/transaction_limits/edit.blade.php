@@ -2,19 +2,16 @@
 @section('page_title', 'Create Location')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
                 {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 {{-- @include('admin.settings.nav')
                 <hr> --}}
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5>Editing Limit for <b>{{$limit->country_code}}</b></h5><a href="{{ route('transaction_limits.index') }}" class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
+                        <h5 class="fw-simibold" style="font-size: 18px;">Editing Limit for <b>{{$limit->country_code}}</b></h5><a href="{{ route('transaction_limits.index') }}" class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                             @include('admin.partials.notification')
-
                             <form action="{{ route('transaction_limits.update', $limit->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
@@ -45,8 +42,6 @@
                             </form>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
 @endsection
 @section('scripts')

@@ -2,14 +2,12 @@
 @section('page_title', 'Create Shipping Rate')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
                 {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 {{-- @include('admin.settings.nav') --}}
                 {{-- <hr> --}}
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-item-center">
-                        <h4 class="font-bold">Edit International Funds Transfer Rate</h4>
+                        <h4 class="fw-simibold" style="font-size: 18px;">Edit International Funds Transfer Rate</h4>
                         {{-- <a href="{{ route('intl_funds_rate.index') }}"
                             class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a> --}}
                     </div>
@@ -89,8 +87,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
 @endsection
 @section('scripts')
@@ -494,7 +490,7 @@
             //   $('#residential_country').select2();
             countries();
             var s_countryValue = @json($intlFundsTransferRates->s_country);
-            var rx_countryValue = @json($intlFundsTransferRates->s_country);
+            var rx_countryValue = @json($intlFundsTransferRates->rx_country);
             function countries() {
 
                 $('#s_country').html('<option value="" disabled >Select Country</option>');

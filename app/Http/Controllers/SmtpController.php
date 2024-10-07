@@ -51,7 +51,7 @@ class SmtpController extends Controller
                 $url = route('smtp.destroy', $row->id);
 
                 $btn .= '<div class="d-flex ps-3 gap-4">';
-                $btn .= '<a href="' . $edit_url . '" class="btn btn-info rounded-1 btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
+                $btn .= '<a style="white-space:nowrap" href="' . $edit_url . '" class="btn btn-info rounded-1 btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
 
                 $btn .= '<form method="POST" action="' . $url . '">
                                 <input type="hidden" name = "_token" value = ' . csrf_token() . '>

@@ -8,12 +8,10 @@
                 {{-- @include('admin.settings.nav')
                 <hr> --}}
                 <div class="card">
-                    <div class="card-header">
-
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h5>Edit Service</h5><a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
+                                    <h5 class="fw-simibold" style="font-size: 18px;">Edit Service</h5><a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
                                         class="fa fa-times"></i>Exit</a>
-                    </div>
+                                </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @include('admin.partials.notification')
@@ -54,10 +52,8 @@
                             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
                         </form>
                     </div>
-                </div>
-            </div>
-        {{-- </div>
-        </div>--}}
+        </div>
+        </div>
     </div>
 @endsection
 @section('scripts')

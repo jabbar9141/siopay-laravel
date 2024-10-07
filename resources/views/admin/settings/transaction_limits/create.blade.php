@@ -2,13 +2,14 @@
 @section('page_title', 'Create Location')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
+        {{-- <div class="card">
+            <div class="card-body"> --}}
                 {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5>Create New Limit</h5> <a href="{{ route('transaction_limits.index') }}"
-                            class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a>
+                        <h5 class="fw-simibold" style="font-size: 18px;">Create New Limit</h5> 
+                        {{-- <a href="{{ route('transaction_limits.index') }}"
+                            class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a> --}}
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -21,8 +22,8 @@
                                     <label for="country">Funds Transfer Type</label>
                                     <select name="country_code" id="country_code" class="form-control" required>
                                         <option value="">Select Funds Transfer</option>
-                                        <option value="AF">Eu</option>
-                                        <option value="AF">Intr</option>
+                                        <option value="AF">European Union</option>
+                                        <option value="AF">International</option>
                                     </select>
                                 </div>
                             </div>
@@ -59,8 +60,8 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+            {{-- </div>
+        </div> --}}
     </div>
 @endsection
 @section('scripts')

@@ -2,20 +2,21 @@
 @section('page_title', 'Create Funds Transfer Rate')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
+        {{-- <div class="card">
+            <div class="card-body"> --}}
                 {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 {{-- @include('admin.settings.nav') --}}
                 {{-- <hr> --}}
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
-                                class="fa fa-times"></i>Exit</a>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="fw-simibold" style="font-size: 18px;">Create New Services</h5>
+                        {{-- <a href="{{ route('transaction_limits.index') }}"
+                            class="btn btn-danger float-right"><i class="fa fa-times"></i>Exit</a> --}}
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @include('admin.partials.notification')
-                        <h5>Create New Services</h5>
+                        
                         <form action="{{ route('service.post') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
@@ -76,8 +77,8 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+            {{-- </div>
+        </div> --}}
     </div>
 @endsection
 @section('scripts')

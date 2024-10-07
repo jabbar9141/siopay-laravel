@@ -2,14 +2,14 @@
 @section('page_title', 'Edit Funds Transfer Rate')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Settings</h5>
+        {{-- <div class="card">
+            <div class="card-body"> --}}
+                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
                 {{-- @include('admin.settings.nav')
                 <hr> --}}
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5>Edit Payment Gatway</h5>
+                    <div class="card-header mb-0 d-flex justify-content-between align-items-center">
+                        <h5 class="fw-simibold" style="font-size: 18px;">Edit Payment Gatway</h5>
                         {{-- <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
                             class="fa fa-times"></i>Exit</a> --}}
 
@@ -67,8 +67,8 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+            {{-- </div>
+        </div> --}}
     </div>
 @endsection
 @section('scripts')
