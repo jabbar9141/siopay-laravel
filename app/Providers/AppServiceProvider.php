@@ -35,27 +35,27 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        $smtp = Smtp::first();
-        if ($smtp) {
-            $data = [
-                'driver' => 'smtp',
-                'host' => $smtp->mail_host,
-                'port' => $smtp->mail_port,
-                'encryption' => $smtp->mail_encreption,
-                'username' => $smtp->mail_username,
-                'password' => $smtp->mail_password,
-                'from' => [
-                    'address' => $smtp->mail_from_addressed,
-                    'name' => 'LaravelStarter',
-                ],
-            ];
+        // $smtp = Smtp::first();
+        // if ($smtp) {
+        //     $data = [
+        //         'driver' => 'smtp',
+        //         'host' => $smtp->mail_host,
+        //         'port' => $smtp->mail_port,
+        //         'encryption' => $smtp->mail_encreption,
+        //         'username' => $smtp->mail_username,
+        //         'password' => $smtp->mail_password,
+        //         'from' => [
+        //             'address' => $smtp->mail_from_addressed,
+        //             'name' => 'LaravelStarter',
+        //         ],
+        //     ];
 
 
-            Config::set('mail', $data);
-            // dd($data);
+        //     Config::set('mail', $data);
+        //     // dd($data);
 
-        } else {
-            dd('No SMTP configuration found');
-        }
+        // } else {
+        //     dd('No SMTP configuration found');
+        // }
     }
 }

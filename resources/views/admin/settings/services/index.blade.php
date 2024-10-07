@@ -8,7 +8,7 @@
                 {{-- @include('admin.settings.nav') --}}
                 <hr>
 
-                @dd($countries);
+                {{-- @dd($countries); --}}
                 {{-- <div class="card">
                     <div class="card-header">
                         <a href="{{ route('service.create') }}" class="btn btn-primary float-right">New Services</a>

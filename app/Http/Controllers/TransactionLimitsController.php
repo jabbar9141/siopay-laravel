@@ -42,7 +42,7 @@ class TransactionLimitsController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
         try {
             $request->validate([
                 'country_code' => 'required|string',
@@ -81,14 +81,14 @@ class TransactionLimitsController extends Controller
         $request->validate([
             'daily_limit' => 'required|numeric',
             'monthly_limit' => 'required|numeric',
-            'weekly_limit' => 'required|numeric',
+            'Weekly_limit' => 'required|numeric',
         ]);
         try {
 
             $l = TransactionLimits::find($l);
             $l->daily_limit = $request->daily_limit;
             $l->monthly_limit = $request->monthly_limit;
-            $l->weekly_limit = $request->weekly_limit;
+            $l->weekly_limit = $request->Weekly_limit;
             $l->update();
             return back()->with(['message' => 'Transaction Limit Updated', 'message_type' => 'success']);
         } catch (\Exception $e) {

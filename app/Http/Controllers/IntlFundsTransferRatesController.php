@@ -97,23 +97,27 @@ class IntlFundsTransferRatesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        try {
-            $request->validate([
-                'name' => 'required',
-                's_country' => 'required',
-                'rx_country' => 'required',
-                'calc' => 'required',
-                'commision' => 'required',
-                'min_amt' => 'required',
-                'max_amt' => 'required'
+    {    
+        $request->validate([
+            'name' => 'required',
+            's_country' => 'required',
+            'rx_country' => 'required',
+            'calc' => 'required',
+            'commision' => 'required',
+            'min_amt' => 'required',
+            'max_amt' => 'required'
 
-            ]);
+        ]);
+        // return $request;
+        try {
+         
             DB::beginTransaction();
             $l = new IntlFundsTransferRates;
             $l->name = $request->name;
             $l->s_country = $request->s_country;
             $l->rx_country = $request->rx_country;
+            $l->s_currency = $request->s_country;
+            $l->rx_currency = $request->rx_country;
             $l->calc = $request->calc;
             $l->commision = $request->commision;
             $l->min_amt = $request->min_amt;
@@ -178,6 +182,8 @@ class IntlFundsTransferRatesController extends Controller
             $l->name = $request->name;
             $l->s_country = $request->s_country;
             $l->rx_country = $request->rx_country;
+            $l->s_currency = $request->s_country;
+            $l->rx_currency = $request->rx_country;
             $l->calc = $request->calc;
             $l->commision = $request->commision;
             $l->min_amt = $request->min_amt;

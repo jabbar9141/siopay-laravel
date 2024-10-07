@@ -109,7 +109,6 @@ class ServiceController extends Controller
 
     public function euCountries()
     {
-
         $eus = [
             'Cyprus',
             'Czech',
@@ -150,38 +149,10 @@ class ServiceController extends Controller
             'Switzerland',
             'United Kingdom',
         ];
-        return $eus;
-        for ($i = 0; $i < count($eus); $i++) {
-            Country::insert([
-                'name' => $eus[$i],
-            ]);
-            // return 'success';
-        }
-
-        $countries = Country::select('id', 'name')->whereIn('name', $eus)->get();
-
-        foreach ($countries as $country) {
-            Country::where('name', $country->name)->update([
-                'is_count_eu' => 1,
-            ]);
-        }
-
-        //find unique
-        $unique = Country::select('name')->where('is_count_eu', 1)->distinct()->get();
-        // dd($unique->toArray());
-
-        // find duplicate
-        $countries = Country::select('name')->groupBy('name')->havingRaw('count(*) > 1')->get();
-
-        $countries = Country::where('is_count_eu', 1)->chunk(50, function ($items) use ($unique) {
-            foreach ($items as $value) {
-                if (!$unique->contains('id', $value->id)) {
-                    $value->delete();
-                }
-            }
-        });
-
-        // return view('admin.settings.services.index', compact('countries'));
+        Country::whereIn('name', $eus)->update([
+            'is_count_eu' => 1,
+        ]);
+        return "Success";
     }
 
     /**

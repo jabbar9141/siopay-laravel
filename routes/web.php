@@ -148,12 +148,8 @@ Route::get('migration', function () {
     //     '--path' => 'database/migrations/2024_09_26_183052_add_user_unique_id_to_users_table.php'
     // ]);
     // Artisan::call('migrate', [
-    //     '--path' => 'database/migrations/2024_09_30_142436_create_services_table.php'
+    //     '--path' => 'database/migrations/2024_10_07_183627_create_services_table.php'
     // ]);
-
-    // Artisan::call('migrate', [
-    //         '--path' => 'database/migrations/2024_10_01_103103_add_column_services_table.php'
-    //     ]);
     // Artisan::call('migrate', [
     //     '--path' => 'database/migrations/2024_10_02_101546_add_column_transaction_limits_table.php'
     // ]);
@@ -164,9 +160,9 @@ Route::get('migration', function () {
     // Artisan::call('migrate', [
     //     '--path' => 'database/migrations/2024_10_02_183126_create_payment_gatways_table.php'
     // ]);
-    Artisan::call('migrate', [
-        '--path' => 'database/migrations/2024_10_04_051830_add_column_countries_table.php'
-    ]);
+    // Artisan::call('migrate', [
+    //     '--path' => 'database/migrations/2024_10_04_051830_add_column_countries_table.php'
+    // ]);
 
     return 'Successfully created';
 });
