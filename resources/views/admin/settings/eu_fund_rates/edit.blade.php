@@ -1,100 +1,100 @@
 @extends('admin.app')
 @section('page_title', 'Edit Funds Transfer Rate')
+@section('css')
+    <style>
+        label {
+            color: black !important;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid">
-        <style>
-            label {
-                color: black !important;
-            }
-        </style>
-                {{-- <h5 class="card-title fw-semibold mb-4">Settings</h5> --}}
-                {{-- @include('admin.settings.nav')
-                <hr> --}}
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="fw-simibold" style="font-size: 18px;">Edit EU Funds Transfer Rate</h4>
-                        {{-- <a href="{{ route('eu_fund_rates.index') }}" class="btn btn-danger float-right"><i
-                                class="fa fa-times"></i>Exit</a> --}}
+
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="font-bold">Edit EU Funds Transfer Rate</h4>
+
+
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                @include('admin.partials.notification')
+                {{-- @dd($eUFundsTransferRates->toArray()); --}}
+                <form action="{{ route('eu_fund_rates.update', $eUFundsTransferRates->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <h1 style="color: black;" class="font-bold">Name</h1>
+                            <input type="text" class="form-control" name="name" id="name"
+                                value="{{ $eUFundsTransferRates->name }}" required>
+                        </div>
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        @include('admin.partials.notification')
-                         {{-- @dd($eUFundsTransferRates->toArray()); --}}
-                        <form action="{{ route('eu_fund_rates.update', $eUFundsTransferRates->id) }}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <h1 style="color: black;" class="font-bold">Name</h1>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        value="{{ $eUFundsTransferRates->name }}" required>
-                                </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="p-2 space-y-2">
+                                <h1 style="color: black;" class="font-bold">Select Origin Country</h1>
+                                <select name="s_country_eu" id="s_country_eu" class="form-control rounded-lg" required>
+                                    @error('s_country_eu')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </select>
                             </div>
-                            <br>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <div class="p-2 space-y-2">
-                                        <h1 style="color: black;" class="font-bold">Select Origin Country</h1>
-                                        <select name="s_country_eu" id="s_country_eu" class="form-control rounded-lg" required>
-                                            @error('s_country_eu')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <div class="p-2 space-y-2">
-                                        <h1 style="color: black;" class="font-bold">Select Destination Country</h1>
-                                        <select name="rx_country_eu" id="rx_country_eu" class="form-control rounded-lg" required>
-                                            @error('rx_country_eu')
-                                                <p class="text-danger">{{ $message }}</p>
-                                            @enderror
-                                        </select>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="p-2 space-y-2">
+                                <h1 style="color: black;" class="font-bold">Select Destination Country</h1>
+                                <select name="rx_country_eu" id="rx_country_eu" class="form-control rounded-lg" required>
+                                    @error('rx_country_eu')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </select>
                             </div>
-                            <br>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <h1 style="color: black;" class="font-bold">Commision Calculation</h1>
-                                    <select name="calc" id="calc" class="form-control" required>
-                                        <option value="perc"
-                                            {{ $eUFundsTransferRates->calc == 'perc' ? 'selected' : '' }}>Percentage
-                                        </option>
-                                        <option value="fixed"
-                                            {{ $eUFundsTransferRates->calc == 'fixed' ? 'selected' : '' }}>Fixed Amount
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <h1 style="color: black;" class="font-bold">Commision Amount Or Percentage</h1>
-                                    <input step="any" min="0" max="100" class="form-control" type="number"
-                                        name="commision" id="commision" value="{{ $eUFundsTransferRates->commision }}"
-                                        required>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <h1 style="color: black;" class="font-bold">Minimum Amount supported</h1>
-                                    <input type="number" name="min_amt" id="min_amt" min="0" step="any"
-                                        class="form-control" value="{{ $eUFundsTransferRates->min_amt }}" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <h1 style="color: black;" class="font-bold">Maximum Amount supported</h1>
-                                    <input type="number" name="max_amt" id="max_amt" min="0" step="any"
-                                        class="form-control" value="{{ $eUFundsTransferRates->max_amt }}" required>
-                                </div>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Update</button>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <h1 style="color: black;" class="font-bold">Commision Calculation</h1>
+                            <select name="calc" id="calc" class="form-control" required>
+                                <option value="perc" {{ $eUFundsTransferRates->calc == 'perc' ? 'selected' : '' }}>
+                                    Percentage
+                                </option>
+                                <option value="fixed" {{ $eUFundsTransferRates->calc == 'fixed' ? 'selected' : '' }}>Fixed
+                                    Amount
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h1 style="color: black;" class="font-bold">Commision Amount Or Percentage</h1>
+                            <input step="any" min="0" max="100" class="form-control" type="number"
+                                name="commision" id="commision" value="{{ $eUFundsTransferRates->commision }}" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <h1 style="color: black;" class="font-bold">Minimum Amount supported</h1>
+                            <input type="number" name="min_amt" id="min_amt" min="0" step="any"
+                                class="form-control" value="{{ $eUFundsTransferRates->min_amt }}" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <h1 style="color: black;" class="font-bold">Maximum Amount supported</h1>
+                            <input type="number" name="max_amt" id="max_amt" min="0" step="any"
+                                class="form-control" value="{{ $eUFundsTransferRates->max_amt }}" required>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 @section('scripts')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -103,9 +103,9 @@
             //   $('#residential_country').select2();
             countries();
 
-             s_countryValue = @json($eUFundsTransferRates->s_country_eu);
-             rx_countryValue = @json($eUFundsTransferRates->rx_country_eu);
-             console.log(rx_countryValue);
+            s_countryValue = @json($eUFundsTransferRates->s_country_eu);
+            rx_countryValue = @json($eUFundsTransferRates->rx_country_eu);
+            console.log(rx_countryValue);
 
             function countries() {
 
@@ -123,26 +123,28 @@
                     success: function(response) {
                         if (response.success) {
                             $.each(response.countries, function(key, value) {
-                                if(s_countryValue == value.name) {
-                                    $("#s_country_eu").append('<option selected value="' + value.name +
-                                    '">' + value.name + '</option>');
+                                if (s_countryValue == value.name) {
+                                    $("#s_country_eu").append('<option selected value="' + value
+                                        .name +
+                                        '">' + value.name + '</option>');
                                 } else {
                                     $("#s_country_eu").append('<option value="' + value.name +
-                                    '">' + value.name + '</option>');
+                                        '">' + value.name + '</option>');
                                 }
 
                             });
                             $('#s_country_eu').trigger('change');
 
                             $.each(response.countries, function(key, value) {
-                                if(rx_countryValue == value.name) {
-                                $("#rx_country_eu").append('<option selected value="' + value
-                                    .name +
-                                    '">' + value.name + '</option>');
+                                if (rx_countryValue == value.name) {
+                                    $("#rx_country_eu").append('<option selected value="' +
+                                        value
+                                        .name +
+                                        '">' + value.name + '</option>');
                                 } else {
                                     $("#rx_country_eu").append('<option value="' + value
-                                    .name +
-                                    '">' + value.name + '</option>');
+                                        .name +
+                                        '">' + value.name + '</option>');
                                 }
                             });
                             $('#rx_country_eu').trigger('change');

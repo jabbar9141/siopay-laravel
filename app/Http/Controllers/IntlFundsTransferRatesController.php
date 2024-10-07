@@ -62,7 +62,7 @@ class IntlFundsTransferRatesController extends Controller
                 $edit_url = route('intl_funds_rate.edit', $rate->id);
                 $url = route('intl_funds_rate.destroy', $rate->id);
                 $btn =   '<div class="d-flex justify-content-between">';
-                $btn .= '<a style="white-space: nowrap" href="' . $edit_url . '" class="btn btn-info btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
+                $btn .= '<a style="white-space: nowrap" href="' . $edit_url . '" class="btn btn-info btn-sm" > Edit</a>';
                 $btn .= '<form method="POST" action="' . $url . '">
                             <input type="hidden" name = "_token" value = ' . csrf_token() . '>
                             <input type="hidden" name = "_method" value ="DELETE">

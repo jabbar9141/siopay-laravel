@@ -271,6 +271,12 @@ Route::post('assignKycManager/{user_id}', [AdminController::class, 'assignKycMan
 Route::post('assignAccountManager/{user_id}', [AdminController::class, 'assignAccountManager'])->name('assignAccountManager')->middleware(['auth']);
 Route::post('uploadProfileImage/{user_id}', [AdminController::class, 'uploadProfileImage'])->name('uploadProfileImage')->middleware(['auth']);
 
+Route::resource('eu_fund_rates', EUFundsTransferRatesController::class)->middleware(['auth']);
+Route::get('EUFundsTransferRatesList', [EUFundsTransferRatesController::class, 'EUFundsTransferRatesList'])->name('EUFundsTransferRatesList')->middleware(['auth']);
+
+Route::resource('intl_funds_rate', IntlFundsTransferRatesController::class)->middleware(['auth']);
+Route::get('IntlFundsTransferRatesList', [IntlFundsTransferRatesController::class, 'IntlFundsTransferRatesList'])->name('IntlFundsTransferRatesList')->middleware(['auth']);
+
 // Old
 Route::get('/dashboard/profile', [HomeController::class, 'profile'])->middleware(['auth'])->name('profile');
 Route::get('/dashboard/airtime', [HomeController::class, 'airtime'])->middleware(['auth'])->name('airtime');
@@ -289,12 +295,10 @@ Route::resource('shipping_rates', ShippingRateController::class)->middleware(['a
 Route::get('shippingRatesList', [ShippingRateController::class, 'shippingRatesList'])->name('shippingRatesList')->middleware(['auth']);
 
 
-Route::resource('eu_fund_rates', EUFundsTransferRatesController::class)->middleware(['auth']);
-Route::get('EUFundsTransferRatesList', [EUFundsTransferRatesController::class, 'EUFundsTransferRatesList'])->name('EUFundsTransferRatesList')->middleware(['auth']);
 
 
-Route::resource('intl_funds_rate', IntlFundsTransferRatesController::class)->middleware(['auth']);
-Route::get('IntlFundsTransferRatesList', [IntlFundsTransferRatesController::class, 'IntlFundsTransferRatesList'])->name('IntlFundsTransferRatesList')->middleware(['auth']);
+
+
 
 Route::resource('orders', OrderController::class)->middleware(['auth']);
 Route::get('/locations-search', [LocationController::class, 'search'])->name('locations.search');

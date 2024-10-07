@@ -511,13 +511,22 @@
                     "data": "DT_RowIndex"
                 },
                 {
-                    "data": "name"
+                    "data": "name",
+                    "searchable": true,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
                 {
-                    "data": "origin"
+                    "data": "origin",
+                    "searchable": true,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
                 {
-                    "data": "destination"
+                    "data": "destination",
+                    "searchable": true,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
                 // {
                 //     "data": "origin_currencies"
@@ -526,17 +535,28 @@
                 //     "data": "detination_currencies"
                 // },
                 {
-                    "data": "commision"
+                    "data": "commision",
+                    "searchable": false,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
                 {
-                    "data": "calc"
+                    "data": "calc",
+                    "searchable": false,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
                 {
-                    "data": "limits"
+                    "data": "limits",
+                    "searchable": false,
+                    "orderable": false,
+                    "class": "text-nowrap",
                 },
 
                 {
-                    "data": "action"
+                    "data": "action",
+                    "searchable": false,
+                    "orderable": false, 
                 }
             ],
             "paging": true,
