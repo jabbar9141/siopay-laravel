@@ -21,7 +21,7 @@ class CreateIntlFundsTransferRatesTable extends Migration
             $table->string('s_currency');
             $table->string('rx_currency');
             $table->double('ex_rate')->default(1);
-            $table->enum('calc', ['perc', 'fixed']);
+            $table->enum('calc', ['percentage', 'fixed']);
             $table->double('commision')->default(1);
             $table->double('min_amt')->default(0);
             $table->double('max_amt')->default(999);

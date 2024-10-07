@@ -164,6 +164,10 @@ Route::get('migration', function () {
     //     '--path' => 'database/migrations/2024_10_04_051830_add_column_countries_table.php'
     // ]);
 
+    Artisan::call('migrate', [
+        '--path' => 'database/migrations/2024_10_07_191357_change_value_e_u_funds_transfer_rates_table.php'
+    ]);
+
     return 'Successfully created';
 });
 

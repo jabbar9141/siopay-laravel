@@ -48,7 +48,7 @@
                         <div class="form-group col-md-6">
                             <h1 style="color: black" class="font-bold">Commision Calculation</h1>
                             <select name="calc" id="calc" class="form-control" required>
-                                <option value="perc">Percentage</option>
+                                <option value="percentage">Percentage</option>
                                 <option value="fixed">Fixed Amount</option>
                             </select>
                         </div>

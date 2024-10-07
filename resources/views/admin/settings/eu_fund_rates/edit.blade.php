@@ -59,7 +59,7 @@
                         <div class="form-group col-md-6">
                             <h1 style="color: black;" class="font-bold">Commision Calculation</h1>
                             <select name="calc" id="calc" class="form-control" required>
-                                <option value="perc" {{ $eUFundsTransferRates->calc == 'perc' ? 'selected' : '' }}>
+                                <option value="percentage" {{ $eUFundsTransferRates->calc == 'percentage' ? 'selected' : '' }}>
                                     Percentage
                                 </option>
                                 <option value="fixed" {{ $eUFundsTransferRates->calc == 'fixed' ? 'selected' : '' }}>Fixed

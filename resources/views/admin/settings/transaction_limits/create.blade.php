@@ -16,8 +16,8 @@
                                     <h1 class="fw-bold">Funds Transfer Type</h1>
                                     <select name="country_code" id="country_code" class="form-control" required>
                                         <option value="">Select Funds Transfer</option>
-                                        <option value="AF">European Union</option>
-                                        <option value="AF">International</option>
+                                        <option value="european_union">European Union</option>
+                                        <option value="international">International</option>
                                     </select>
                                 </div>
                             </div>

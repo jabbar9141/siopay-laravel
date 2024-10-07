@@ -14,8 +14,12 @@
                                 @method('PUT')
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <h1 class="fw-bold">Country</h1>
-                                        <input type="text" disabled value="{{$limit->country_code}}" name="country_code" id="country_code" class="form-control" required>
+                                        <h1 class="fw-bold">Funds Transfer Type</h1>
+                                        <select name="country_code" id="country_code" class="form-control" required>
+                                            <option value="">Select Funds Transfer</option>
+                                            <option value="european_union" {{ $limit->country_code == 'european_union' ? 'selected' : '' }}>European Union</option>
+                                            <option value="international" {{ $limit->country_code == 'international' ? 'selected' : '' }}>International</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <br>
@@ -42,5 +46,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script></script>
+    
 @endsection
