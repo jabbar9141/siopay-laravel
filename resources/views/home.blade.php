@@ -88,6 +88,55 @@
                         </div>
                     </div>
 
+                    
+
+                    <div class="bg-gray-200 p-3 h-60 rounded-xl">
+                        <h1 class="font-bold text-xl">Recent Transactions</h1>
+                        <div class="p-2">
+                            <div class="space-y-3 justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <div class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
+                                        <svg class="text-blue-400" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                            height="1em" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="m16.052 1.787l.966.261a7 7 0 0 1 4.93 4.934l.26.965l-1.93.521l-.261-.965a5 5 0 0 0-3.522-3.524l-.965-.262zM1 2h8.58l1.487 6.69l-1.86 1.86a14.1 14.1 0 0 0 4.243 4.242l1.86-1.859L22 14.42V23h-1a19.9 19.9 0 0 1-10.85-3.196a20.1 20.1 0 0 1-5.954-5.954A19.9 19.9 0 0 1 1 3zm2.027 2a17.9 17.9 0 0 0 2.849 8.764a18.1 18.1 0 0 0 5.36 5.36A17.9 17.9 0 0 0 20 20.973v-4.949l-4.053-.9l-2.174 2.175l-.663-.377a16.07 16.07 0 0 1-6.032-6.032l-.377-.663l2.175-2.174L7.976 4zm12.111 1.165l.966.261a3.5 3.5 0 0 1 2.465 2.467l.26.965l-1.93.521l-.261-.965a1.5 1.5 0 0 0-1.057-1.057l-.965-.261z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h1>Mobile data</h1>
+                                        <h1>Apr 13th, 2024 - 10:32:20</h1>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
+                                        <svg class="text-blue-400" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                            height="1em" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="m16.052 1.787l.966.261a7 7 0 0 1 4.93 4.934l.26.965l-1.93.521l-.261-.965a5 5 0 0 0-3.522-3.524l-.965-.262zM1 2h8.58l1.487 6.69l-1.86 1.86a14.1 14.1 0 0 0 4.243 4.242l1.86-1.859L22 14.42V23h-1a19.9 19.9 0 0 1-10.85-3.196a20.1 20.1 0 0 1-5.954-5.954A19.9 19.9 0 0 1 1 3zm2.027 2a17.9 17.9 0 0 0 2.849 8.764a18.1 18.1 0 0 0 5.36 5.36A17.9 17.9 0 0 0 20 20.973v-4.949l-4.053-.9l-2.174 2.175l-.663-.377a16.07 16.07 0 0 1-6.032-6.032l-.377-.663l2.175-2.174L7.976 4zm12.111 1.165l.966.261a3.5 3.5 0 0 1 2.465 2.467l.26.965l-1.93.521l-.261-.965a1.5 1.5 0 0 0-1.057-1.057l-.965-.261z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h1>Mobile data</h1>
+                                        <h1>Apr 13th, 2024 - 10:32:20</h1>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <div class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
+                                        <svg class="text-blue-400" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                            height="1em" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="m16.052 1.787l.966.261a7 7 0 0 1 4.93 4.934l.26.965l-1.93.521l-.261-.965a5 5 0 0 0-3.522-3.524l-.965-.262zM1 2h8.58l1.487 6.69l-1.86 1.86a14.1 14.1 0 0 0 4.243 4.242l1.86-1.859L22 14.42V23h-1a19.9 19.9 0 0 1-10.85-3.196a20.1 20.1 0 0 1-5.954-5.954A19.9 19.9 0 0 1 1 3zm2.027 2a17.9 17.9 0 0 0 2.849 8.764a18.1 18.1 0 0 0 5.36 5.36A17.9 17.9 0 0 0 20 20.973v-4.949l-4.053-.9l-2.174 2.175l-.663-.377a16.07 16.07 0 0 1-6.032-6.032l-.377-.663l2.175-2.174L7.976 4zm12.111 1.165l.966.261a3.5 3.5 0 0 1 2.465 2.467l.26.965l-1.93.521l-.261-.965a1.5 1.5 0 0 0-1.057-1.057l-.965-.261z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h1>Mobile data</h1>
+                                        <h1>Apr 13th, 2024 - 10:32:20</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="bg-white space-y-3 h-60 rounded-xl">
                         <div class="bg-gray-200 items-center flex p-3 rounded-xl">
 
@@ -154,55 +203,6 @@
                         </div>
 
                     </div>
-
-                    <div class="bg-gray-200 p-3 h-60 rounded-xl">
-                        <h1 class="font-bold text-xl">Recent Transactions</h1>
-                        <div class="p-2">
-                            <div class="space-y-3 justify-between">
-                                <div class="flex items-center space-x-2">
-                                    <div class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
-                                        <svg class="text-blue-400" xmlns="http://www.w3.org/2000/svg" width="1em"
-                                            height="1em" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="m16.052 1.787l.966.261a7 7 0 0 1 4.93 4.934l.26.965l-1.93.521l-.261-.965a5 5 0 0 0-3.522-3.524l-.965-.262zM1 2h8.58l1.487 6.69l-1.86 1.86a14.1 14.1 0 0 0 4.243 4.242l1.86-1.859L22 14.42V23h-1a19.9 19.9 0 0 1-10.85-3.196a20.1 20.1 0 0 1-5.954-5.954A19.9 19.9 0 0 1 1 3zm2.027 2a17.9 17.9 0 0 0 2.849 8.764a18.1 18.1 0 0 0 5.36 5.36A17.9 17.9 0 0 0 20 20.973v-4.949l-4.053-.9l-2.174 2.175l-.663-.377a16.07 16.07 0 0 1-6.032-6.032l-.377-.663l2.175-2.174L7.976 4zm12.111 1.165l.966.261a3.5 3.5 0 0 1 2.465 2.467l.26.965l-1.93.521l-.261-.965a1.5 1.5 0 0 0-1.057-1.057l-.965-.261z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h1>Mobile data</h1>
-                                        <h1>Apr 13th, 2024 - 10:32:20</h1>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <div class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
-                                        <svg class="text-blue-400" xmlns="http://www.w3.org/2000/svg" width="1em"
-                                            height="1em" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="m16.052 1.787l.966.261a7 7 0 0 1 4.93 4.934l.26.965l-1.93.521l-.261-.965a5 5 0 0 0-3.522-3.524l-.965-.262zM1 2h8.58l1.487 6.69l-1.86 1.86a14.1 14.1 0 0 0 4.243 4.242l1.86-1.859L22 14.42V23h-1a19.9 19.9 0 0 1-10.85-3.196a20.1 20.1 0 0 1-5.954-5.954A19.9 19.9 0 0 1 1 3zm2.027 2a17.9 17.9 0 0 0 2.849 8.764a18.1 18.1 0 0 0 5.36 5.36A17.9 17.9 0 0 0 20 20.973v-4.949l-4.053-.9l-2.174 2.175l-.663-.377a16.07 16.07 0 0 1-6.032-6.032l-.377-.663l2.175-2.174L7.976 4zm12.111 1.165l.966.261a3.5 3.5 0 0 1 2.465 2.467l.26.965l-1.93.521l-.261-.965a1.5 1.5 0 0 0-1.057-1.057l-.965-.261z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h1>Mobile data</h1>
-                                        <h1>Apr 13th, 2024 - 10:32:20</h1>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-2">
-                                    <div class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
-                                        <svg class="text-blue-400" xmlns="http://www.w3.org/2000/svg" width="1em"
-                                            height="1em" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="m16.052 1.787l.966.261a7 7 0 0 1 4.93 4.934l.26.965l-1.93.521l-.261-.965a5 5 0 0 0-3.522-3.524l-.965-.262zM1 2h8.58l1.487 6.69l-1.86 1.86a14.1 14.1 0 0 0 4.243 4.242l1.86-1.859L22 14.42V23h-1a19.9 19.9 0 0 1-10.85-3.196a20.1 20.1 0 0 1-5.954-5.954A19.9 19.9 0 0 1 1 3zm2.027 2a17.9 17.9 0 0 0 2.849 8.764a18.1 18.1 0 0 0 5.36 5.36A17.9 17.9 0 0 0 20 20.973v-4.949l-4.053-.9l-2.174 2.175l-.663-.377a16.07 16.07 0 0 1-6.032-6.032l-.377-.663l2.175-2.174L7.976 4zm12.111 1.165l.966.261a3.5 3.5 0 0 1 2.465 2.467l.26.965l-1.93.521l-.261-.965a1.5 1.5 0 0 0-1.057-1.057l-.965-.261z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h1>Mobile data</h1>
-                                        <h1>Apr 13th, 2024 - 10:32:20</h1>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
                 <div class="bg-gray-200 mt-4 items-center flex p-3 rounded-xl">
                     <div class="w-100 px-4">
@@ -211,7 +211,7 @@
                             @foreach ($admin_rep['services'] as  $service)
 
                             <div class="items-center flex justify-center flex-col cursor-pointer" id="buyelectric">
-                                <div class="bg-blue-200  rounded-full p-2 w-[2em] h-[2em] items-center justify-center">
+                                <div class="bg-blue-200  rounded-full p-2 w-[3em] h-[3em] items-center justify-center">
                                     <img src="{{ asset($service->logo) }}" alt="">
                                 </div>
                                 <h1 class="text-blue-400 text-center">{{ $service->name }}</h1>
