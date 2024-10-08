@@ -1,11 +1,4 @@
 <div>
-    {{-- @if ($errors->any())
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li class="text-danger">{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif --}}
     @if (count($errors))
         <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -16,7 +9,6 @@
                     @endforeach
                 </ul>
             @endif
-
         </div>
     @endif
     @if (Session::has('message') or isset($message))

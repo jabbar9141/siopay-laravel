@@ -34,8 +34,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-
-        // $smtp = Smtp::first();
+        // $smtp = Smtp::where('set_as_default', true)->first();
         // if ($smtp) {
         //     $data = [
         //         'driver' => 'smtp',

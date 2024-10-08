@@ -49,8 +49,10 @@ class SmtpController extends Controller
                 $btn = '';
                 $edit_url = route('smtp.edit', $row->id);
                 $url = route('smtp.destroy', $row->id);
+                $set_as_default = route('smtp.set_as_default', $row->id);
 
-                $btn .= '<div class="d-flex ps-3 gap-4">';
+                $btn .= '<div class="d-flex ps-3 gap-3">';
+                $btn .= '<a style="white-space:nowrap" href="' . $set_as_default . '" class="btn btn-primary rounded-1 btn-sm" >Set as Default</a>';
                 $btn .= '<a style="white-space:nowrap" href="' . $edit_url . '" class="btn btn-info rounded-1 btn-sm" ><i class="fa fa-pencil"></i> Edit</a>';
 
                 $btn .= '<form method="POST" action="' . $url . '">
@@ -121,7 +123,23 @@ class SmtpController extends Controller
     {
         //
     }
+    public function set_as_default($id)
+    {
+        try {
 
+            Smtp::where('set_as_default', 1)->update([
+                'set_as_default' => 0,
+            ]);
+
+            Smtp::where('id', $id)->update([
+                'set_as_default' => 1,
+            ]);
+
+            return redirect()->route('setting.tabs')->with(['message' => "Your SMTP Credencials Set as Default", 'message_type' => 'success']);
+        } catch (\Throwable $th) {
+            return back()->with(['message' => 'Something went Wrong']);
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

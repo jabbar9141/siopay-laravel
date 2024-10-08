@@ -393,7 +393,7 @@ class EUFundTransferOrderController extends Controller
 
                 //calculate costs
                 $main = $o->s_amount;
-                $comm = ($o->rate->calc == 'perc') ? (($o->rate->commision / 100) * $o->s_amount) : $o->rate->commision;
+                $comm = ($o->rate->calc == 'percentage') ? (($o->rate->commision / 100) * $o->s_amount) : $o->rate->commision;
                 $subTotal = $main;
                 $taxRate = 0;
                 $taxCost = $subTotal + $taxRate;

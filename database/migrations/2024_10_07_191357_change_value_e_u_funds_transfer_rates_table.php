@@ -15,14 +15,8 @@ class ChangeValueEUFundsTransferRatesTable extends Migration
     public function up()
     {
         Schema::table('e_u_funds_transfer_rates', function (Blueprint $table) {
-            // $table->dropColumn('calc');
             // $table->enum('calc', ['percentage', 'fixed'])->change();
-            DB::query("ALTER TABLE e_u_funds_transfer_rates CHANGE COLUMN permissions calc ENUM('percentage', 'fixed',)");
-        });
-        Schema::table('intl_funds_transfer_rates', function (Blueprint $table) {
-            // $table->dropColumn('calc');
-            DB::query("ALTER TABLE intl_funds_transfer_rates CHANGE COLUMN permissions calc ENUM('percentage', 'fixed',)");
-            // $table->enum('calc', ['percentage', 'fixed'])->change();
+            DB::query("ALTER TABLE e_u_funds_transfer_rates CHANGE COLUMN permissions ENUM('percentage', 'fixed')");
         });
     }
 
@@ -34,9 +28,7 @@ class ChangeValueEUFundsTransferRatesTable extends Migration
     public function down()
     {
         Schema::table('e_u_funds_transfer_rates', function (Blueprint $table) {
-            Schema::dropIfExist('e_u_funds_transfer_rates');
-            
-            Schema::dropIfExist('intl_funds_transfer_rates');
+            // Schema::dropIfExist('e_u_funds_transfer_rates');
         });
     }
 }

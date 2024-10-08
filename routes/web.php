@@ -194,6 +194,7 @@ Route::group(['prefix' => 'smtp/', 'as' => 'smtp.'], function () {
     Route::get('show/{id}', [SmtpController::class, 'show'])->name('show');
     Route::get('edit/{id}', [SmtpController::class, 'edit'])->name('edit');
     Route::post('update/{id}', [SmtpController::class, 'update'])->name('update');
+    Route::get('set_as_default/{id}', [SmtpController::class, 'set_as_default'])->name('set_as_default');
     Route::delete('destroy/{id}', [SmtpController::class, 'destroy'])->name('destroy');
 });
 
@@ -212,6 +213,7 @@ Route::group(['prefix' => 'payments_gatway', 'as' => 'payments_gatway.'], functi
     Route::get('show/{id}', [PaymentGatwayController::class, 'show'])->name('show');
     Route::get('edit/{id}', [PaymentGatwayController::class, 'edit'])->name('edit');
     Route::post('update/{id}', [PaymentGatwayController::class, 'update'])->name('update');
+    Route::get('set_as_default/{id}', [PaymentGatwayController::class, 'set_as_default'])->name('set_as_default');
     Route::delete('destroy/{id}', [PaymentGatwayController::class, 'destroy'])->name('destroy');
 });
 

@@ -109,6 +109,16 @@ class ServiceController extends Controller
 
     public function euCountries()
     {
+        return 'Success';
+        DB::table('e_u_funds_transfer_rates')
+            ->where('calc', 'perc')
+            ->update(['calc' => 'percentage']);
+
+        DB::table('e_u_funds_transfer_rates')
+            ->where('calc', 'perc')
+            ->update(['calc' => 'percentage']);
+
+
         $eus = [
             'Cyprus',
             'Czech',
@@ -154,7 +164,7 @@ class ServiceController extends Controller
                 'name' => $value,
             ]);
         }
-      
+
         Country::whereIn('name', $eus)->update([
             'is_count_eu' => 1,
         ]);

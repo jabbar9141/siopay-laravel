@@ -5,6 +5,7 @@
 @section('page_title', 'Home')
 @section('content')
     <div class="container-fluid">
+        @include('admin.partials.notification')
         <div class="card">
             <div class="card-header">
                 <ul class="nav nav-tabs">
